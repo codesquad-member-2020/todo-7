@@ -16,6 +16,9 @@ import javax.sql.DataSource;
 @EnableTransactionManagement
 public class DatabaseConfig {
 
+   @Value("${db.driver}")
+   private String driver;
+
     @Value("${db.url}")
     private String url;
 
@@ -29,6 +32,7 @@ public class DatabaseConfig {
     @Bean
     public DataSource dataSource() {
         return DataSourceBuilder.create()
+                .driverClassName(driver)
                 .url(url)
                 .username(user)
                 .password(password).build();
