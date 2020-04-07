@@ -1,11 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/a4cc172c99.js" crossorigin="anonymous"></script>
     <title>todo</title>
 </head>
+
 <body>
-    
+    <header>
+        <span class="title">TODO 서비스</span>
+        <button class="btn-menu">menu</button>
+    </header>
+    <div class="wrap">
+        <div class="column-todo">
+            <div class="column-header">
+                <span class="list-total">3</span>
+                <span class="column-title">To Do</span>
+                <button class="btn-add">+</button>
+                <button class="btn-close">X</button>
+            </div>
+            <div class="add-list-wrap">
+                <input>
+                <button class="btn-list-add">Add</button>
+                <button class="btn-list-cancel">Cancel</button>
+            </div>
+            <ul class="list">
+                <li class="card">
+                    <div><i class="far fa-newspaper"></i></div>
+                    <div class="card-content">
+                        <div class="content">페이지네이션 UI 리서치</div>
+                        <div class="writer-message">Added by <span class="writer-id">hyewon3938</span></div>
+                    </div>
+                    <button class="btn-list-delete">X</button>
+                </li>
+            </ul>
+        </div>
+        <div class="column-inProgress">
+        </div>
+        <div class="column-done">
+        </div>
+    </div>
+    <div class="menu">
+        <div class="menu-header">
+            <div class="menu-title"><i class="fas fa-bars"></i> Menu</div>
+            <div class="menu-close">X</div>
+        </div>
+        <div class="activiiy-title"><i class="fas fa-bell"></i> Activity</div>
+        <ul class="activity-list">
+            <li>
+                <div class="activity-message"><span class="activity-action-name">added</span> <span class="activity-content">github공부하기</span> to <span class="">To Do</span></div>
+                <div class="edited-time-message">3 minutes ago</div>
+            </li>
+        </ul>
+    </div>
 </body>
+
 </html>
