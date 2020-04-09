@@ -148,9 +148,24 @@
             </objects>
             <point key="canvasLocation" x="139" y="822"/>
         </scene>
+        <!--New Card View Controller-->
+        <scene sceneID="INm-GD-B14">
+            <objects>
+                <viewController storyboardIdentifier="NewCardViewController" id="yEQ-Lb-C5d" customClass="NewCardViewController" customModule="ToDo" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="jnm-UW-xFl">
+                        <rect key="frame" x="0.0" y="0.0" width="1366" height="1024"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="zlX-fX-3u4"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="r2x-Zn-ADd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="633" y="843"/>
+        </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="s3A-8O-nns"/>
+        <segue reference="t3L-cd-Ffn"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="text.justify" catalog="system" width="128" height="100"/>
