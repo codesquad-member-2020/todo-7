@@ -22,6 +22,8 @@
 		AE91F50F243DB8F800430DA2 /* InProgressTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE91F50E243DB8F800430DA2 /* InProgressTableViewDataSource.swift */; };
 		AE91F511243DB90F00430DA2 /* ToDoTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE91F510243DB90F00430DA2 /* ToDoTableViewDataSource.swift */; };
 		AE91F513243DC6AD00430DA2 /* ToDoTableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE91F512243DC6AD00430DA2 /* ToDoTableViewDelegate.swift */; };
+		AE91F516243EC33700430DA2 /* NewCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE91F515243EC33700430DA2 /* NewCardViewController.swift */; };
+		AE91F547243EC65700430DA2 /* Name.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE91F546243EC65700430DA2 /* Name.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +55,8 @@
 		AE91F50E243DB8F800430DA2 /* InProgressTableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InProgressTableViewDataSource.swift; sourceTree = "<group>"; };
 		AE91F510243DB90F00430DA2 /* ToDoTableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoTableViewDataSource.swift; sourceTree = "<group>"; };
 		AE91F512243DC6AD00430DA2 /* ToDoTableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoTableViewDelegate.swift; sourceTree = "<group>"; };
+		AE91F515243EC33700430DA2 /* NewCardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewCardViewController.swift; sourceTree = "<group>"; };
+		AE91F546243EC65700430DA2 /* Name.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Name.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,6 +99,8 @@
 		AE91F3F2243C518E00430DA2 /* ToDo */ = {
 			isa = PBXGroup;
 			children = (
+				AE91F545243EC64E00430DA2 /* Notification */,
+				AE91F514243EC30A00430DA2 /* NewCard */,
 				AE91F50B243DB88A00430DA2 /* ContainerViewController */,
 				AE91F50A243DB86300430DA2 /* Done */,
 				AE91F509243DB85A00430DA2 /* InProgress */,
@@ -152,6 +158,22 @@
 				AE91F417243C635A00430DA2 /* ContainerTableViewCell.swift */,
 			);
 			path = ContainerViewController;
+			sourceTree = "<group>";
+		};
+		AE91F514243EC30A00430DA2 /* NewCard */ = {
+			isa = PBXGroup;
+			children = (
+				AE91F515243EC33700430DA2 /* NewCardViewController.swift */,
+			);
+			path = NewCard;
+			sourceTree = "<group>";
+		};
+		AE91F545243EC64E00430DA2 /* Notification */ = {
+			isa = PBXGroup;
+			children = (
+				AE91F546243EC65700430DA2 /* Name.swift */,
+			);
+			path = Notification;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -264,8 +286,10 @@
 				AE91F513243DC6AD00430DA2 /* ToDoTableViewDelegate.swift in Sources */,
 				AE91F418243C635A00430DA2 /* ContainerTableViewCell.swift in Sources */,
 				AE91F4D6243C971600430DA2 /* ContainerTableSectionHeaderView.swift in Sources */,
+				AE91F516243EC33700430DA2 /* NewCardViewController.swift in Sources */,
 				AE91F511243DB90F00430DA2 /* ToDoTableViewDataSource.swift in Sources */,
 				AE91F416243C592A00430DA2 /* ContainerTableViewController.swift in Sources */,
+				AE91F547243EC65700430DA2 /* Name.swift in Sources */,
 				AE91F50D243DB8EC00430DA2 /* DoneTableViewDataSource.swift in Sources */,
 				AE91F50F243DB8F800430DA2 /* InProgressTableViewDataSource.swift in Sources */,
 				AE91F3F8243C518E00430DA2 /* ViewController.swift in Sources */,

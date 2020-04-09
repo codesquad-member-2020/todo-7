@@ -8,10 +8,6 @@
 
 import UIKit
 
-extension Notification.Name {
-    static var pushCellCount: Notification.Name = Notification.Name(rawValue: "pushCellCount")
-}
-
 class ToDoTableViewDataSource: NSObject {
     var tempData: [(title: String,description: String)] = [("할일","공부하기"),
                                                            ("4월2일", "오토레이아웃자성하기\n유아이 작성하기\n버튼 추가"),
