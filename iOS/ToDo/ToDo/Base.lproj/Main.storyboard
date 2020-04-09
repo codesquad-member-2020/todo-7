@@ -155,7 +155,53 @@
                     <view key="view" contentMode="scaleToFill" id="jnm-UW-xFl">
                         <rect key="frame" x="0.0" y="0.0" width="1366" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o44-pZ-bbE">
+                                <rect key="frame" x="56" y="64" width="61" height="36"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="Cancel"/>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="New Card" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qpr-Ul-WMI">
+                                <rect key="frame" x="56" y="164" width="181.5" height="48"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="40"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="hPG-EL-0eV">
+                                <rect key="frame" x="56" y="236" width="1254" height="499"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Author by App" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7xN-43-De0">
+                                <rect key="frame" x="56" y="783" width="110" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i9n-2Y-7cm">
+                                <rect key="frame" x="1266" y="170" width="36" height="36"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="Add"/>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="o44-pZ-bbE" firstAttribute="leading" secondItem="zlX-fX-3u4" secondAttribute="leading" constant="56" id="1eH-Ip-X05"/>
+                            <constraint firstItem="hPG-EL-0eV" firstAttribute="leading" secondItem="o44-pZ-bbE" secondAttribute="leading" id="83n-He-PuS"/>
+                            <constraint firstItem="i9n-2Y-7cm" firstAttribute="centerY" secondItem="qpr-Ul-WMI" secondAttribute="centerY" id="CjG-5P-BO4"/>
+                            <constraint firstItem="zlX-fX-3u4" firstAttribute="bottom" secondItem="7xN-43-De0" secondAttribute="bottom" constant="200" id="Iek-gu-8eH"/>
+                            <constraint firstItem="o44-pZ-bbE" firstAttribute="top" secondItem="zlX-fX-3u4" secondAttribute="top" constant="64" id="OVS-la-8wh"/>
+                            <constraint firstItem="qpr-Ul-WMI" firstAttribute="leading" secondItem="o44-pZ-bbE" secondAttribute="leading" id="OkS-6q-FQb"/>
+                            <constraint firstItem="hPG-EL-0eV" firstAttribute="top" secondItem="qpr-Ul-WMI" secondAttribute="bottom" constant="24" id="QRe-bj-Mly"/>
+                            <constraint firstItem="7xN-43-De0" firstAttribute="top" secondItem="hPG-EL-0eV" secondAttribute="bottom" constant="48" id="b0K-oD-Yfe"/>
+                            <constraint firstItem="7xN-43-De0" firstAttribute="leading" secondItem="hPG-EL-0eV" secondAttribute="leading" id="dWf-VQ-2xE"/>
+                            <constraint firstItem="hPG-EL-0eV" firstAttribute="centerX" secondItem="jnm-UW-xFl" secondAttribute="centerX" id="s1C-xE-BwW"/>
+                            <constraint firstItem="zlX-fX-3u4" firstAttribute="trailing" secondItem="i9n-2Y-7cm" secondAttribute="trailing" constant="64" id="vAi-hZ-baE"/>
+                            <constraint firstItem="qpr-Ul-WMI" firstAttribute="top" secondItem="o44-pZ-bbE" secondAttribute="bottom" constant="64" id="vqp-zN-ccj"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="zlX-fX-3u4"/>
                     </view>
                 </viewController>
