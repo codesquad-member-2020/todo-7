@@ -12,10 +12,7 @@ module.exports = {
     rules: [
       {
         test: /\.css$/,
-        use: [MiniCssExtractPlugin.loader, "css-loader"],
-        options : {
-            publicPath : './public'
-        }
+        use: [MiniCssExtractPlugin.loader, "css-loader"]
       },
     ],
   },
@@ -23,6 +20,8 @@ module.exports = {
     new HtmlWebpackPlugin({
         template : './src/page/index.html',
         filename : './index.html'
-    }),new MiniCssExtractPlugin()
+    }),new MiniCssExtractPlugin({
+        filename : './style.css'
+    })
   ]
 };
