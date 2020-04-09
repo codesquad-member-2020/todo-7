@@ -1,9 +1,14 @@
-INSERT INTO Category(Id, Title) VALUES(1, '해야 할 일'), (2, '하고 있는 일'), (3, '완료된 일');
+INSERT INTO project(id, title) VALUES(1, 'Todo Project');
+
+INSERT INTO category
+    (id, title, project, project_key)
+VALUES
+    (1, '해야 할 일', 1, 0), (2, '하고 있는 일', 1, 1), (3, '완료된 일', 1, 2);
 
 INSERT INTO
-    Card(Id, Contents, CategoryId, PrevCardId)
+    card(id, contents, category, category_key)
 VALUES
-    (1, 'Spring boot와 MySQL 연결', 3, NULL),
-    (2, 'Spring data jdbc 학습', 2, NULL),
-    (3, 'ddd aggregate root 선택 기준준', 2, 2),
-    (4, 'aggregate root를 통해 CRUD 로직 구현', 1, NULL);
+    (1, '할 일 1', 1, 0),
+    (2, '할 일 2', 1, 1),
+    (3, '하는 중 1', 2, 0),
+    (4, '다함 1', 3, 1);
