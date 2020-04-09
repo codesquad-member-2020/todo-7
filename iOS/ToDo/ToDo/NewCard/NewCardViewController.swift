@@ -10,4 +10,8 @@ import UIKit
 
 class NewCardViewController: UIViewController {
     
+    //MARK: - Actions
+    @IBAction func dismissViewAction(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
+    }
 }
