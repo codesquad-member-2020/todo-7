@@ -15,16 +15,14 @@ extension Notification.Name {
 class ToDoTableViewDataSource: NSObject {
     var tempData: [(title: String,description: String)] = [("할일","공부하기"),
                                                            ("4월2일", "오토레이아웃자성하기\n유아이 작성하기\n버튼 추가"),
-                                                           ("4월3일", "DragAndDrop\nNSItem\nTableView\nTableViewCell")] {
-        didSet {
-            NotificationCenter.default
-                .post(name: Notification.Name.pushCellCount, object: nil, userInfo: ["count": tempData.count])
-        }
-    }
+                                                           ("4월3일", "DragAndDrop\nNSItem\nTableView\nTableViewCell")] 
+    
 }
 
 extension ToDoTableViewDataSource: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        NotificationCenter.default
+            .post(name: Notification.Name.pushCellCount, object: nil, userInfo: ["count": tempData.count])
         return tempData.count
     }
     

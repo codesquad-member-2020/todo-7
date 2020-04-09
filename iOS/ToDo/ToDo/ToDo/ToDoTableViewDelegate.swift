@@ -10,7 +10,7 @@ import UIKit
 
 class ToDoTableViewDelegate: NSObject {
     
-    private var count: Int = 0
+    private var count: String = ""
     
     override init() {
         super.init()
@@ -22,9 +22,8 @@ class ToDoTableViewDelegate: NSObject {
     }
     
     @objc func reloadCount(_ notification: Notification) {
-        guard let userInfo = notification.userInfo?["count"] as? String,
-            let count = Int(userInfo) else { return }
-        self.count = count
+        guard let userInfo = notification.userInfo?["count"] as? Int else { return }
+        self.count = String(userInfo)
     }
 }
 
@@ -32,7 +31,7 @@ extension ToDoTableViewDelegate: UITableViewDelegate {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         guard let view = tableView
             .dequeueReusableHeaderFooterView(withIdentifier: ContainerTableSectionHeaderView.identifier) as? ContainerTableSectionHeaderView else { return nil }
-        view.updateCountingLabel(count: String(count), title: "Todo")
+        view.updateCountingLabel(count: count, title: "Todo")
         return view
     }
     
