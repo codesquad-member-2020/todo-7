@@ -207,6 +207,9 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="zlX-fX-3u4"/>
                     </view>
+                    <connections>
+                        <outlet property="decriptionTextView" destination="hPG-EL-0eV" id="7mK-Iv-yih"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="r2x-Zn-ADd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

@@ -10,6 +10,18 @@ import UIKit
 
 class NewCardViewController: UIViewController {
     
+    // MARK: - IBOutlets
+    @IBOutlet weak var decriptionTextView: UITextView!
+    
+    // MARK: - Properties
+    private var newCardTextViewDelegate: NewCardTextViewDelegate = NewCardTextViewDelegate()
+    
+    // MARK: - Lifecycles
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        decriptionTextView.delegate = newCardTextViewDelegate
+    }
+    
     //MARK: - Actions
     @IBAction func dismissViewAction(_ sender: Any) {
         dismiss(animated: true, completion: nil)
