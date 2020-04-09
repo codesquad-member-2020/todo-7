@@ -87,6 +87,9 @@ class ContainerTableSectionHeaderView: UITableViewHeaderFooterView {
     }
     
     @objc func addCellAction() {
-        // MARK 뷰 모달 기능 추가
+        NotificationCenter.default
+            .post(name: Notification.Name.newCard,
+                  object: nil)
     }
 }
+
