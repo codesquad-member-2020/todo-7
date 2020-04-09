@@ -1,11 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/a4cc172c99.js" crossorigin="anonymous"></script>
     <title>todo</title>
+    <link rel="stylesheet" type="text/css" href="../style/common/lib/reset.css" />
+    <link rel="stylesheet" type="text/css" href="../style/style.css" />
+
 </head>
+
 <body>
-    
+    <div class="todo">
+        <header>
+            <span class="title">TODO 서비스</span>
+            <button class="btn-menu">menu</button>
+        </header>
+        <div class="wrap">
+            <div class="column-todo">
+                <div class="column-header">
+                    <div class="list-total"></div>
+                    <div class="column-title">To Do</div>
+                    <button class="btn-add"><i class="fas fa-plus"></i></button>
+                    <button class="btn-close"><i class="fas fa-times"></i></button>
+                </div>
+            </div>
+            <div class="column-inProgress">
+                <div class="column-header">
+                    <div class="list-total"></div>
+                    <div class="column-title">In Progress</div>
+                    <button class="btn-add"><i class="fas fa-plus"></i></button>
+                    <button class="btn-close"><i class="fas fa-times"></i></button>
+                </div>
+            </div>
+            <div class="column-done">
+                <div class="column-header">
+                    <div class="list-total"></div>
+                    <div class="column-title">Done</div>
+                    <button class="btn-add"><i class="fas fa-plus"></i></button>
+                    <button class="btn-close"><i class="fas fa-times"></i></button>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
+
 </html>
