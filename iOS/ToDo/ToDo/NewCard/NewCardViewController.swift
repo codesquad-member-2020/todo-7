@@ -11,7 +11,7 @@ import UIKit
 class NewCardViewController: UIViewController {
     
     // MARK: - IBOutlets
-    @IBOutlet weak var decriptionTextView: UITextView!
+    @IBOutlet weak var descriptionTextView: UITextView!
     
     // MARK: - Properties
     private var newCardTextViewDelegate: NewCardTextViewDelegate = NewCardTextViewDelegate()
@@ -19,11 +19,22 @@ class NewCardViewController: UIViewController {
     // MARK: - Lifecycles
     override func viewDidLoad() {
         super.viewDidLoad()
-        decriptionTextView.delegate = newCardTextViewDelegate
+        descriptionTextView.delegate = newCardTextViewDelegate
     }
     
-    //MARK: - Actions
+    // MARK: - Actions
     @IBAction func dismissViewAction(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
+    
+    @IBAction func addCardAction(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
+    }
+    
+    @IBAction func tapGesture(_ sender: Any) {
+        view.endEditing(true)
+    }
+    // MARK: - Methods
+    
+
 }
