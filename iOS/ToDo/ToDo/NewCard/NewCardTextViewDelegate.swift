@@ -8,15 +8,50 @@
 
 import UIKit
 
-class NewCardTextViewDelegate: NSObject {
+protocol Editable {
+    func applyPlaceHolder(_ textView: UITextView)
+    func placeHodler(_ textView: UITextView)
+    func willEdit(_ textView: UITextView)
+    func limit(text: String, range: NSRange, max: Int) -> Bool
+}
+
+class NewCardTextViewDelegate: NSObject, Editable {
     
+    // MARK: - Properties
+    static var limit: Int = 500
+    
+    // MARK: - Methods
+    func applyPlaceHolder(_ textView: UITextView) {
+        textView.text.isEmpty ? placeHodler(textView) : willEdit(textView)
+    }
+    
+    func placeHodler(_ textView: UITextView) {
+        textView.text = "새로운 카드 만들기"
+        textView.textColor = .systemGray
+    }
+    
+    func willEdit(_ textView: UITextView) {
+        textView.text = ""
+        textView.textColor = .black
+    }
+    
+    func limit(text: String, range: NSRange, max: Int) -> Bool {
+        guard let range = Range(range, in: text) else { return false }
+        let result = text.replacingCharacters(in: range, with: text)
+        return result.count < max
+    }
 }
 
 extension NewCardTextViewDelegate: UITextViewDelegate {
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
-        let currentText = textView.text ?? ""
-        guard let stringRange = Range(range, in: currentText) else { return false }
-        let updateText = currentText.replacingCharacters(in: stringRange, with: text)
-        return updateText.count <= 500
+        limit(text: textView.text, range: range, max: NewCardTextViewDelegate.limit)
+    }
+    
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        applyPlaceHolder(textView)
+    }
+    
+    func textViewDidEndEditing(_ textView: UITextView) {
+        textView.text.isEmpty ? placeHodler(textView) : nil
     }
 }
