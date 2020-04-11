@@ -9,6 +9,7 @@ button {
     width: 1500px;
     height: 800px;
     margin : 30px auto;
+    overflow: hidden;
 }
 header {
     width: 100%;
@@ -265,7 +266,7 @@ textarea {
     width: 400px;
     height: 100%;
     top: 0px;
-    right: 0px;
+    right: -450px;
     background:white;
     box-sizing: border-box;
     border: solid 2px #E6E6E6;
