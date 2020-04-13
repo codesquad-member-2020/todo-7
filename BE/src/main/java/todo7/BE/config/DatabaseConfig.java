@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.io.Resource;
 import org.springframework.data.jdbc.repository.config.EnableJdbcRepositories;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
@@ -16,6 +17,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 import javax.sql.DataSource;
 
 @Configuration
+@PropertySource("classpath:db.properties")
 @EnableJdbcRepositories(basePackages = "todo7.BE.domain")
 @EnableTransactionManagement
 public class DatabaseConfig {
@@ -31,7 +33,7 @@ public class DatabaseConfig {
 
     @Value("${db.password}")
     private String password;
-    
+
     @Value("classpath:ddl.sql")
     private Resource ddl;
 
