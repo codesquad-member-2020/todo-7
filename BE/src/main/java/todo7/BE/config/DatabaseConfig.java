@@ -33,7 +33,7 @@ public class DatabaseConfig {
 
     @Value("${db.password}")
     private String password;
-    
+
     @Value("classpath:ddl.sql")
     private Resource ddl;
 
