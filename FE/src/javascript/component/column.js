@@ -15,7 +15,7 @@ class Column {
         <button class="btn-close"><i class="fas fa-times"></i></button></div>
     <div class="column-content">
         <div class="add-list-wrap" id="add-list-wrap-${this.columnName}"></div>
-        <ul class="list"></ul></div></div>`;
+        <ul class="list" id="list-${this.columnName}"></ul></div></div>`;
     this.init();
   }
 
@@ -47,7 +47,7 @@ class Column {
   renderCard(){
     const cards = this.columnData.cards;
     for (let i = 0; i < cards.length; i++) {
-      new Card(cards[i].contents);
+      new Card(this.columnName,cards[i].contents);
     }
   }
 
@@ -58,7 +58,7 @@ class Column {
     if (btnAdd.value == 0) {
       addListWrap.innerHTML = this.cardForm.cardFormHTML;
       btnAdd.value = 1;
-      this.cardForm.addBtnCancelEvent(btnAdd, addListWrap);
+      this.cardForm.registerEventListener();
     } else if (btnAdd.value == 1) {
       addListWrap.innerHTML = "";
       btnAdd.value = 0;
