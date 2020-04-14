@@ -3,6 +3,7 @@ package todo7.BE.domain;
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.springframework.data.annotation.Id;
+import todo7.BE.web.exception.NotFoundException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,7 +29,11 @@ public class Category {
     }
 
 
-    public boolean compare(int id) {
+    public Card findCard(int cardId) {
+        return cards.stream().filter(category -> category.checkId(cardId)).findAny().orElseThrow(() -> new NotFoundException("Card " + cardId));
+    }
+
+    public boolean checkId(int id) {
         return this.id == id;
     }
 

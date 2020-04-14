@@ -25,6 +25,10 @@ public class Project {
     }
 
 
+    public Category findCategory(int categoryId) {
+        return categories.stream().filter(category -> category.checkId(categoryId)).findAny().orElseThrow(() -> new NotFoundException("Category " + categoryId));
+    }
+
     public void add(int categoryId, Card card) {
         this.findCategory(categoryId).add(card);
     }
@@ -33,7 +37,8 @@ public class Project {
         return this.findCategory(categoryId).getLastCard();
     }
 
-    public Category findCategory(int categoryId) {
-        return categories.stream().filter((category -> category.compare(categoryId))).findAny().orElseThrow(() -> new NotFoundException("Category " + categoryId));
+    public void update(int categoryId, int cardId, Card newCard) {
+        Card targetCard = this.findCategory(categoryId).findCard(cardId);
+        targetCard.merge(newCard);
     }
 }

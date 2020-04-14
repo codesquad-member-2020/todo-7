@@ -24,4 +24,13 @@ public class Card {
         this.title = title;
         this.contents = contents;
     }
+
+    public boolean checkId(int id) {
+        return this.id == id;
+    }
+
+    public void merge(Card newCard) {
+        this.title = newCard.title;
+        this.contents = newCard.contents;
+    }
 }
