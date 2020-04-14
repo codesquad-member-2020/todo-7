@@ -10,12 +10,21 @@ import UIKit
 
 class ContainerTableViewDelegate: NSObject {
     
+    private var count: String = ""
+    private var title: String
+
+    init(title: String) {
+        self.title = title
+        super.init()
+    }
 }
 
 extension ContainerTableViewDelegate: UITableViewDelegate {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         guard let view = tableView
             .dequeueReusableHeaderFooterView(withIdentifier: ContainerTableSectionHeaderView.identifier) as? ContainerTableSectionHeaderView else { return nil }
+        view.updateCountingLabel(count, title)
+        
         return view
     }
     
