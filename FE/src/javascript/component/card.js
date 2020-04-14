@@ -1,6 +1,5 @@
 class Card {
-  constructor(columnName, cardContent) {
-    this.columnName = columnName;
+  constructor(cardContent) {
     this.cardContent = cardContent;
     this.cardHTML = `<li class="card">
         <div class="list-icon"><i class="far fa-newspaper"></i></div>
