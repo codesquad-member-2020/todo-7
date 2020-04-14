@@ -1,5 +1,6 @@
 class Card {
-  constructor(cardContent) {
+  constructor(columnName,cardContent) {
+    this.columnName = columnName;
     this.cardContent = cardContent;
     this.cardHTML = `<li class="card">
         <div class="list-icon"><i class="far fa-newspaper"></i></div>
@@ -12,8 +13,9 @@ class Card {
     this.makeCard();
   }
   makeCard(){
-      const listUL = document.querySelector(".list");
-      listUL.innerHTML += this.cardHTML;
+      const listULID = `list-${this.columnName}`;
+      const listUL = document.getElementById(listULID);
+      listUL.insertAdjacentHTML("afterbegin", this.cardHTML);
   }
 
 }
