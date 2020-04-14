@@ -26,10 +26,8 @@ class Column {
   init() {
     this.render();
     this.registerEventListener();
-    const cards = this.columnData.cards;
-    for (let i = 0; i < cards.length; i++) {
-      new Card(cards[i].contents);
-    }
+    this.renderCard();
+    this.renderCardTotal();
   }
 
   registerEventListener() {
@@ -41,22 +39,30 @@ class Column {
     });
   }
 
+  renderCardTotal(){
+    const listTotal = document.querySelector('.list-total');
+    listTotal.innerHTML = this.columnData.cards.length;
+  }
+
+  renderCard(){
+    const cards = this.columnData.cards;
+    for (let i = 0; i < cards.length; i++) {
+      new Card(cards[i].contents);
+    }
+  }
+
   columnPlusBtnClickHandler(btnAdd) {
     const addListWrapID = `add-list-wrap-${this.columnName}`;
     const addListWrap = document.getElementById(addListWrapID);
 
     if (btnAdd.value == 0) {
-      this.addCardForm(btnAdd, addListWrap);
+      addListWrap.innerHTML = this.cardForm.cardFormHTML;
+      btnAdd.value = 1;
       this.cardForm.addBtnCancelEvent(btnAdd, addListWrap);
     } else if (btnAdd.value == 1) {
       addListWrap.innerHTML = "";
       btnAdd.value = 0;
     }
-  }
-
-  addCardForm(btnAdd, addListWrap) {
-    addListWrap.innerHTML = this.cardForm.cardFormHTML;
-    btnAdd.value = 1;
   }
 }
 

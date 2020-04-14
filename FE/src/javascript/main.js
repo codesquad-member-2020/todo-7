@@ -15,8 +15,6 @@ window.addEventListener('DOMContentLoaded', () => {
         const columnDone = new Column(2,data.categories[2]);
         const columnInProgress = new Column(1,data.categories[1]);
         const columnToDo = new Column(0,data.categories[0]);
-
         menu.onMenuBtnClick();
-
       })
 });
