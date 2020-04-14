@@ -9,7 +9,7 @@ class Column {
     this.cardForm = new CardForm(this.columnName);
     this.columnHTML = `<div class="column">
     <div class="column-header">
-        <div class="list-total"></div>
+        <div class="list-total" id="list-total-${this.columnName}"></div>
         <div class="column-title">${this.columnName}</div>
         <button class="btn-add" id="add-${this.columnName}" value="0"><i class="fas fa-plus"></i></button>
         <button class="btn-close"><i class="fas fa-times"></i></button></div>
@@ -40,7 +40,7 @@ class Column {
   }
 
   renderCardTotal(){
-    const listTotal = document.querySelector('.list-total');
+    const listTotal = document.getElementById(`list-total-${this.columnName}`);
     listTotal.innerHTML = this.columnData.cards.length;
   }
 
