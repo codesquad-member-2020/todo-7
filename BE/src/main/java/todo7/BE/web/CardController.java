@@ -22,14 +22,24 @@ public class CardController {
     @PostMapping
     public ResponseEntity<Card> createCard(@PathVariable int projectId, @PathVariable int categoryId, @RequestBody Card card) {
         Project project = projects.findById(projectId).orElseThrow(() -> new NotFoundException("Project " + projectId));
-        project.add(categoryId, card);
-        return ResponseEntity.status(HttpStatus.CREATED).body(projects.save(project).getNewCard(categoryId));
+        project.addCard(categoryId, card);
+        project = projects.save(project);
+        return ResponseEntity.status(HttpStatus.CREATED).body(project.getNewCard(categoryId));
     }
 
     @PutMapping("/{cardId}")
     public ResponseEntity<Card> updateCard(@PathVariable int projectId, @PathVariable int categoryId, @PathVariable int cardId, @RequestBody Card newCard) {
         Project project = projects.findById(projectId).orElseThrow(() -> new NotFoundException("Project " + projectId));
-        project.update(categoryId, cardId, newCard);
-        return ResponseEntity.accepted().body(projects.save(project).findCategory(categoryId).findCard(cardId));
+        project.updateCard(categoryId, cardId, newCard);
+        project = projects.save(project);
+        return ResponseEntity.accepted().body(project.findCategory(categoryId).findCard(cardId));
+    }
+
+    @DeleteMapping("/{cardId}")
+    public ResponseEntity<String> deleteCard(@PathVariable int projectId, @PathVariable int categoryId, @PathVariable int cardId) {
+        Project project = projects.findById(projectId).orElseThrow(() -> new NotFoundException("Project " + projectId));
+        project.removeCard(categoryId, cardId);
+        projects.save(project);
+        return ResponseEntity.accepted().body("success");
     }
 }

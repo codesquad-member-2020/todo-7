@@ -44,4 +44,12 @@ public class Category {
     public Card getLastCard() {
         return cards.get(cards.size() - 1);
     }
+
+    public void updateCard(int cardId, Card newCard) {
+        this.findCard(cardId).merge(newCard);
+    }
+
+    public void removeCard(int cardId) {
+        cards.remove(findCard(cardId));
+    }
 }
