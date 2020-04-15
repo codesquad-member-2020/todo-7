@@ -48,6 +48,7 @@ class CardForm {
   addBtnClickHandler() {
     const textarea = document.getElementById(`textarea-${this.columnName}`);
     if (textarea.value.length <= 0) return;
+    util.showLoadingIndicator('.loading',0);
     this.requestAddingCard(textarea.value);
    
   }
@@ -61,7 +62,9 @@ class CardForm {
       .then((response) => response.json())
       .then((data) => {
         if(data.status == "404"){alert(data.status+' : '+data.error)}
-        else{this.addCard(data);};
+        else{this.addCard(data);
+          util.closeLoadingIndicator('.loading',-1600);
+        };
       });
   }
   addCard(data){

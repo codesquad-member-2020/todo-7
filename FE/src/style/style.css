@@ -429,3 +429,17 @@ textarea {
     border: solid 1px #6E6E6E;
     background: #088A4B;
 }
+.loading{
+    position: absolute;
+    top: 0px;
+    left: -1600px;
+    width: inherit;
+    height: inherit;
+    background-color: rgba(0,0,0,0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.loading-img{
+    width: 200px;
+}

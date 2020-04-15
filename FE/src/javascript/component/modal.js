@@ -1,5 +1,6 @@
 import {SERVICE_URL} from "../constants/serviceUrls.js";
 import {fetchRequest} from "../util/fetchRequest.js";
+import util from "../util/util.js";
 
 const registerEventListener = () => {
   const btnDelete = document.querySelector(".edit-note-close-btn");
@@ -14,12 +15,13 @@ const registerEventListener = () => {
 };
 
 const saveEditedContent = () => {
+  util.closeLoadingIndicator('.loading',0);
     const editTextarea = document.querySelector(".edit-note-textarea");
     const targetCardID = editTextarea.dataset.target;
     const targetColumnID = editTextarea.dataset.columnId;
     const targetCard = document.getElementById(`card-${targetCardID}`);
     const editedContent = editTextarea.value;
-    
+
     const requestBody = {
       "title": editedContent,
       "contents": "",
@@ -31,6 +33,7 @@ const saveEditedContent = () => {
         if(data.status == "404"){alert(data.status+' : '+data.error)}
         else{
         targetCard.innerText = editedContent;
+        util.closeLoadingIndicator('.loading',-1600);
         closeModal();
         }
       });

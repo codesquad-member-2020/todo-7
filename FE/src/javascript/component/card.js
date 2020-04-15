@@ -1,6 +1,7 @@
 import modal from "../component/modal.js";
 import {SERVICE_URL} from "../constants/serviceUrls.js";
 import { fetchRequest } from "../util/fetchRequest.js";
+import util from "../util/util.js";
 
 class Card {
   constructor(columnId,columnName, cardContent, cardID) {
@@ -37,6 +38,7 @@ class Card {
   }
   btnDeleteClickHandler() {
     if (confirm("선택하신 카드를 삭제하시겠습니까?")) {
+      util.closeLoadingIndicator('.loading',0);
       this.requestDeletingCard();
     } else {return;}
   }
@@ -53,6 +55,7 @@ class Card {
       else{
       this.removeCard();
       this.renderCardTotal();
+      util.closeLoadingIndicator('.loading',-1600);
       }
     });
   }
