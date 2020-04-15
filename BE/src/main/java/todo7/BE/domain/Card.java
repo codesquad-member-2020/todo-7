@@ -1,23 +1,36 @@
 package todo7.BE.domain;
 
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.springframework.data.annotation.Id;
 
+@JsonAutoDetect(
+        fieldVisibility = JsonAutoDetect.Visibility.ANY,
+        getterVisibility = JsonAutoDetect.Visibility.NONE
+)
 public class Card {
 
     @Id
     private int id;
 
+    private String title;
+
     private String contents;
 
-    public Card(String contents) {
+    @JsonProperty("curPosition")
+    private int categoryKey;
+
+    public Card(String title, String contents) {
+        this.title = title;
         this.contents = contents;
     }
 
-    public int getId() {
-        return id;
+    public boolean checkId(int id) {
+        return this.id == id;
     }
 
-    public String getContents() {
-        return contents;
+    public void merge(Card newCard) {
+        this.title = newCard.title;
+        this.contents = newCard.contents;
     }
 }

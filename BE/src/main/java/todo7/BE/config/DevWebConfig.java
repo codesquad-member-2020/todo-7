@@ -11,7 +11,6 @@ public class DevWebConfig implements WebMvcConfigurer {
 
     @Override
     public void addCorsMappings(CorsRegistry registry) {
-        System.out.println("dev");
         registry.addMapping("/**")
                 .allowedOrigins("http://localhost:5500")
                 .allowedMethods("*");
