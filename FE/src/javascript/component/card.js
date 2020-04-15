@@ -1,7 +1,10 @@
 import modal from "../component/modal.js";
+import {SERVICE_URL} from "../constants/serviceUrls.js";
+import { fetchRequest } from "../util/fetchRequest.js";
 
 class Card {
-  constructor(columnName, cardContent,cardID) {
+  constructor(columnId,columnName, cardContent, cardID) {
+    this.columnId = columnId;
     this.columnName = columnName;
     this.cardContent = cardContent;
     this.cardID = cardID;
@@ -34,8 +37,18 @@ class Card {
   }
   btnDeleteClickHandler() {
     if (confirm("선택하신 카드를 삭제하시겠습니까?")) {
-      this.removeCard();
-      this.renderCardTotal();
+      const requestBody = {
+        "title": this.cardContent,
+        "contents": "",
+      };
+      const requestURL = SERVICE_URL.REQUEST_URL+`/categories/${this.columnId}/cards/${this.cardID}`;
+      fetchRequest(requestURL, "DELETE", requestBody)
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+        this.removeCard();
+        this.renderCardTotal();
+      });
     } else {
       return;
     }
@@ -48,6 +61,8 @@ class Card {
     const editTextarea = document.querySelector(".edit-note-textarea");
 
     editTextarea.dataset.target= this.cardID;
+    editTextarea.dataset.columnId= this.columnId;
+
     modal.setCardContent(cardContent);
     modal.openModal();
   }

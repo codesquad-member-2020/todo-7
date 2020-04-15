@@ -1,3 +1,6 @@
+import {SERVICE_URL} from "../constants/serviceUrls.js";
+import {fetchRequest} from "../util/fetchRequest.js";
+
 const registerEventListener = () => {
   const btnDelete = document.querySelector(".edit-note-close-btn");
   btnDelete.addEventListener("click", () => {
@@ -12,10 +15,21 @@ const registerEventListener = () => {
 const saveEditedContent = () => {
     const editTextarea = document.querySelector(".edit-note-textarea");
     const targetCardID = editTextarea.dataset.target;
+    const targetColumnID = editTextarea.dataset.columnId;
     const targetCard = document.getElementById(`card-${targetCardID}`);
     const editedContent = editTextarea.value;
-    targetCard.innerText = editedContent;
-    closeModal();
+    const requestBody = {
+      "title": editedContent,
+      "contents": "",
+    };
+    const requestURL = SERVICE_URL.REQUEST_URL+`/categories/${targetColumnID}/cards/${targetCardID}`;
+    fetchRequest(requestURL, "PUT", requestBody)
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+        targetCard.innerText = editedContent;
+        closeModal();
+      });
 };
 
 const closeModal = () => {

@@ -2,11 +2,11 @@ import CardForm from "../component/cardForm.js";
 import Card from "../component/card.js";
 
 class Column {
-  constructor(columnNum,columnData) {
-    this.columnNum = columnNum;
+  constructor(columnData) {
+    this.columnId = columnData.id;
     this.columnData = columnData;
     this.columnName = columnData.title;
-    this.cardForm = new CardForm(this.columnName);
+    this.cardForm = new CardForm(this.columnId,this.columnName);
     this.columnHTML = `<div class="column">
     <div class="column-header">
         <div class="list-total" id="list-total-${this.columnName}"></div>
@@ -47,7 +47,7 @@ class Column {
   renderCard(){
     const cards = this.columnData.cards;
     for (let i = 0; i < cards.length; i++) {
-      new Card(this.columnName,cards[i].contents,cards[i].id);
+      new Card(this.columnId,this.columnName,cards[i].title,cards[i].id);
     }
   }
 
