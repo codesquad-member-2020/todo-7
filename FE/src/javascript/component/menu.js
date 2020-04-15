@@ -1,4 +1,4 @@
-const onMenuBtnClick = ()=>{
+const registerEventListener = ()=>{
     const btnMenu = document.querySelector(".btn-menu");
     const menuBtnClose = document.querySelector(".menu-btn-close");
     
@@ -16,4 +16,4 @@ const onMenuBtnClick = ()=>{
     })
 }
 
-export default {onMenuBtnClick};
+export default {registerEventListener};

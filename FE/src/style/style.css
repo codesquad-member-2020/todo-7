@@ -217,6 +217,9 @@ textarea {
     padding-top: 5px;
     padding-left: 5px;
 }
+.list-icon:hover{
+    color : #5882FA;
+}
 .card-content{
     width: 400px;
     text-align: left;
@@ -346,10 +349,13 @@ textarea {
     color: #848484;
     font-weight: bold;
 }
+.edit-note{
+    display: none;
+}
 .edit-note-background{
     position: absolute;
     top: 0px;
-    left: 0px;
+    left: -1600px;
     width: inherit;
     height: inherit;
     background-color: rgba(0,0,0,0.5);

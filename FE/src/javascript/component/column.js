@@ -47,7 +47,7 @@ class Column {
   renderCard(){
     const cards = this.columnData.cards;
     for (let i = 0; i < cards.length; i++) {
-      new Card(this.columnName,cards[i].contents);
+      new Card(this.columnName,cards[i].contents,cards[i].id);
     }
   }
 
