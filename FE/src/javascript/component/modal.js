@@ -12,12 +12,14 @@ const registerEventListener = () => {
       saveEditedContent();
   });
 };
+
 const saveEditedContent = () => {
     const editTextarea = document.querySelector(".edit-note-textarea");
     const targetCardID = editTextarea.dataset.target;
     const targetColumnID = editTextarea.dataset.columnId;
     const targetCard = document.getElementById(`card-${targetCardID}`);
     const editedContent = editTextarea.value;
+    
     const requestBody = {
       "title": editedContent,
       "contents": "",
@@ -26,9 +28,11 @@ const saveEditedContent = () => {
     fetchRequest(requestURL, "PUT", requestBody)
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
+        if(data.status == "404"){alert(data.status+' : '+data.error)}
+        else{
         targetCard.innerText = editedContent;
         closeModal();
+        }
       });
 };
 

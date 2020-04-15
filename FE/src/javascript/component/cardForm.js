@@ -47,23 +47,30 @@ class CardForm {
   }
   addBtnClickHandler() {
     const textarea = document.getElementById(`textarea-${this.columnName}`);
-    const btnAdd = document.getElementById(`btn-list-add-${this.columnName}`);
     if (textarea.value.length <= 0) return;
-
+    this.requestAddingCard(textarea.value);
+   
+  }
+  requestAddingCard(cardContent){
     const requestURL = SERVICE_URL.REQUEST_URL+`/categories/${this.columnId}/cards`;
     const requestBody = {
-      "title": textarea.value,
+      "title": cardContent,
       "contents": "",
     };
     fetchRequest(requestURL, "POST", requestBody)
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
-        new Card(this.columnId,this.columnName, data.title,data.id);
-        textarea.value = "";
-        util.changeClass(btnAdd, "btn-list-add");
-        this.renderCardTotal();
+        if(data.status == "404"){alert(data.status+' : '+data.error)}
+        else{this.addCard(data);};
       });
+  }
+  addCard(data){
+    const textarea = document.getElementById(`textarea-${this.columnName}`);
+    const btnAdd = document.getElementById(`btn-list-add-${this.columnName}`);
+    new Card(this.columnId, this.columnName, data.title, data.id);
+    textarea.value = "";
+    util.changeClass(btnAdd, "btn-list-add");
+    this.renderCardTotal();
   }
   activateAddBtn() {
     const textarea = document.getElementById(`textarea-${this.columnName}`);

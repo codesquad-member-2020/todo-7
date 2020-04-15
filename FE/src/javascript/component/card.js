@@ -37,23 +37,25 @@ class Card {
   }
   btnDeleteClickHandler() {
     if (confirm("선택하신 카드를 삭제하시겠습니까?")) {
-      const requestBody = {
-        "title": this.cardContent,
-        "contents": "",
-      };
-      const requestURL = SERVICE_URL.REQUEST_URL+`/categories/${this.columnId}/cards/${this.cardID}`;
-      fetchRequest(requestURL, "DELETE", requestBody)
-      .then((response) => response.json())
-      .then((data) => {
-        console.log(data);
-        this.removeCard();
-        this.renderCardTotal();
-      });
-    } else {
-      return;
-    }
+      this.requestDeletingCard();
+    } else {return;}
   }
-
+  requestDeletingCard(){
+    const requestBody = {
+      "title": this.cardContent,
+      "contents": "",
+    };
+    const requestURL = SERVICE_URL.REQUEST_URL+`/categories/${this.columnId}/cards/${this.cardID}`;
+    fetchRequest(requestURL, "DELETE", requestBody)
+    .then((response) => response.json())
+    .then((data) => {
+      if(data.status == "404"){alert(data.status+' : '+data.error)}
+      else{
+      this.removeCard();
+      this.renderCardTotal();
+      }
+    });
+  }
   btnEditClickHandler(){
     const btnEdit = document.getElementById(`list-icon-${this.cardContent}`);
     const target = btnEdit.closest('.card');
