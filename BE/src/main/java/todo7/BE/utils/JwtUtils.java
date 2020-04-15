@@ -9,9 +9,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class JwtUtils {
-//    private JwtUtils() {}
+    private JwtUtils() {}
 
-    private Logger logger = LoggerFactory.getLogger(JwtUtils.class);
+    private static Logger logger = LoggerFactory.getLogger(JwtUtils.class);
     private static final Key key = Keys.secretKeyFor(SignatureAlgorithm.HS256);
 
     public static String createToken(Long id, String userName) {
@@ -31,7 +31,7 @@ public class JwtUtils {
         return jwt;
     }
 
-    public boolean checkJwt(String jwt) {
+    public static boolean checkJwt(String jwt) {
         try {
             Claims claims = Jwts.parserBuilder()
                     .setSigningKey(key)
