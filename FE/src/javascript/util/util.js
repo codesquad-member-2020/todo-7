@@ -4,4 +4,13 @@ const changeClass = (element, newClassName)=> {
     element.classList.add(newClassName);
   }
 
-  export default {changeClass};
+const showLoadingIndicator = (elementClass,showPosition)=> {
+  const loading = document.querySelector(elementClass);
+  loading.style.left = `${showPosition}px`;
+}
+
+const closeLoadingIndicator = (elementClass,closePosition)=> {
+  const loading = document.querySelector(elementClass);
+  loading.style.left = `${closePosition}px`;
+}
+  export default {changeClass,showLoadingIndicator,closeLoadingIndicator};

@@ -1,8 +1,12 @@
 import Card from "../component/card.js";
 import util from "../util/util.js";
+import {SERVICE_URL} from "../constants/serviceUrls.js";
+import { fetchRequest } from "../util/fetchRequest.js";
+
 
 class CardForm {
-  constructor(columnName) {
+  constructor(columnId,columnName) {
+    this.columnId = columnId;
     this.columnName = columnName;
     this.cardFormHTML = `
         <div class="add-list-text">
@@ -43,11 +47,33 @@ class CardForm {
   }
   addBtnClickHandler() {
     const textarea = document.getElementById(`textarea-${this.columnName}`);
-    const btnAdd = document.getElementById(`btn-list-add-${this.columnName}`);
     if (textarea.value.length <= 0) return;
-    new Card(this.columnName, textarea.value);
+    util.showLoadingIndicator('.loading',0);
+    this.requestAddingCard(textarea.value);
+   
+  }
+  requestAddingCard(cardContent){
+    const requestURL = SERVICE_URL.REQUEST_URL+`/categories/${this.columnId}/cards`;
+    const requestBody = {
+      "title": cardContent,
+      "contents": "",
+    };
+    fetchRequest(requestURL, "POST", requestBody)
+      .then((response) => response.json())
+      .then((data) => {
+        if(data.status == "404"){alert(data.status+' : '+data.error)}
+        else{this.addCard(data);
+          util.closeLoadingIndicator('.loading',-1600);
+        };
+      });
+  }
+  addCard(data){
+    const textarea = document.getElementById(`textarea-${this.columnName}`);
+    const btnAdd = document.getElementById(`btn-list-add-${this.columnName}`);
+    new Card(this.columnId, this.columnName, data.title, data.id);
     textarea.value = "";
     util.changeClass(btnAdd, "btn-list-add");
+    this.renderCardTotal();
   }
   activateAddBtn() {
     const textarea = document.getElementById(`textarea-${this.columnName}`);

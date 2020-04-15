@@ -1,7 +1,11 @@
 import modal from "../component/modal.js";
+import {SERVICE_URL} from "../constants/serviceUrls.js";
+import { fetchRequest } from "../util/fetchRequest.js";
+import util from "../util/util.js";
 
 class Card {
-  constructor(columnName, cardContent,cardID) {
+  constructor(columnId,columnName, cardContent, cardID) {
+    this.columnId = columnId;
     this.columnName = columnName;
     this.cardContent = cardContent;
     this.cardID = cardID;
@@ -34,13 +38,27 @@ class Card {
   }
   btnDeleteClickHandler() {
     if (confirm("선택하신 카드를 삭제하시겠습니까?")) {
+      util.closeLoadingIndicator('.loading',0);
+      this.requestDeletingCard();
+    } else {return;}
+  }
+  requestDeletingCard(){
+    const requestBody = {
+      "title": this.cardContent,
+      "contents": "",
+    };
+    const requestURL = SERVICE_URL.REQUEST_URL+`/categories/${this.columnId}/cards/${this.cardID}`;
+    fetchRequest(requestURL, "DELETE", requestBody)
+    .then((response) => response.json())
+    .then((data) => {
+      if(data.status == "404"){alert(data.status+' : '+data.error)}
+      else{
       this.removeCard();
       this.renderCardTotal();
-    } else {
-      return;
-    }
+      util.closeLoadingIndicator('.loading',-1600);
+      }
+    });
   }
-
   btnEditClickHandler(){
     const btnEdit = document.getElementById(`list-icon-${this.cardContent}`);
     const target = btnEdit.closest('.card');
@@ -48,6 +66,8 @@ class Card {
     const editTextarea = document.querySelector(".edit-note-textarea");
 
     editTextarea.dataset.target= this.cardID;
+    editTextarea.dataset.columnId= this.columnId;
+
     modal.setCardContent(cardContent);
     modal.openModal();
   }
