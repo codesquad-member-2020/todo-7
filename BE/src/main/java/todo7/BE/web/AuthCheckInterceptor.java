@@ -1,6 +1,7 @@
-package todo7.BE.utils;
+package todo7.BE.web;
 
 import org.springframework.web.servlet.HandlerInterceptor;
+import todo7.BE.utils.JwtUtils;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
