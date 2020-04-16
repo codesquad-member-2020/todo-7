@@ -70,7 +70,7 @@ class CardForm {
   addCard(data){
     const textarea = document.getElementById(`textarea-${this.columnName}`);
     const btnAdd = document.getElementById(`btn-list-add-${this.columnName}`);
-    new Card(this.columnId, this.columnName, data.title, data.id);
+    new Card(this.columnId, this.columnName, data.title, data.id,'afterbegin');
     textarea.value = "";
     util.changeClass(btnAdd, "btn-list-add");
     this.renderCardTotal();
@@ -81,8 +81,8 @@ class CardForm {
     textarea.value.length > 0 ? util.changeClass(btnAdd, "btn-list-add-active") : util.changeClass(btnAdd, "btn-list-add");
   }
   renderCardTotal() {
-    const listTotal = document.getElementById(`list-total-${this.columnName}`);
-    const listUL = document.getElementById(`list-${this.columnName}`);
+    const listTotal = document.getElementById(`list-total-${this.columnId}`);
+    const listUL = document.getElementById(`list-${this.columnId}`);
     listTotal.innerHTML = listUL.childElementCount;
   }
 }

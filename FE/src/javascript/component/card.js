@@ -2,13 +2,15 @@ import modal from "../component/modal.js";
 import {SERVICE_URL} from "../constants/serviceUrls.js";
 import { fetchRequest } from "../util/fetchRequest.js";
 import util from "../util/util.js";
+import dragAndDrop from "../dragAndDrop.js";
 
 class Card {
-  constructor(columnId,columnName, cardContent, cardID) {
+  constructor(columnId,columnName, cardContent, cardID,renderDirection) {
     this.columnId = columnId;
     this.columnName = columnName;
     this.cardContent = cardContent;
     this.cardID = cardID;
+    this.renderDirection = renderDirection;
     this.cardHTML = `<li class="card" id="${this.cardID}" draggable="true" data-columnid="${this.columnId}">
         <div class="list-icon" id="list-icon-${this.cardID}"><i class="far fa-newspaper"></i></div>
         <div class="card-content">
@@ -17,7 +19,7 @@ class Card {
         </div>
         <button class="btn-list-delete" id="btn-list-delete-${this.cardID}"><i class="fas fa-times"></i></button>
     </li>`;
-    this.makeCard();
+    this.makeCard(this.renderDirection);
     this.registerEventListener();
   }
   registerEventListener() {
@@ -30,11 +32,33 @@ class Card {
     btnEdit.addEventListener('click',()=>{
      this.btnEditClickHandler();
     });
+
+    const card = document.getElementById(this.cardID);
+    const cardAfterimage = card.cloneNode(true);
+    
+
+    card.addEventListener('dragstart',(e)=>{
+      dragAndDrop.draggedItem = card;
+      dragAndDrop.draggedItemAfterimage = cardAfterimage;
+      dragAndDrop.draggedItemColumnId = this.columnId;
+      setTimeout(()=>{
+        card.className = 'card-hold';
+        cardAfterimage.className = 'card-hold';     
+      },0);
+    });
+   
+    card.addEventListener('dragend',()=>{ 
+      setTimeout(()=>{
+        card.className = 'card';
+        cardAfterimage.className = 'card-hold';
+      },0);
+    });
+
   }
-  makeCard() {
+  makeCard(direction) {
     const listULID = `list-${this.columnId}`;
     const listUL = document.getElementById(listULID);
-    listUL.insertAdjacentHTML("afterbegin", this.cardHTML);
+    listUL.insertAdjacentHTML(direction, this.cardHTML);    
   }
   btnDeleteClickHandler() {
     if (confirm("선택하신 카드를 삭제하시겠습니까?")) {
@@ -85,6 +109,8 @@ class Card {
     const listUL = document.getElementById(`list-${this.columnId}`);
     listTotal.innerHTML = listUL.childElementCount;
   }
+
+  
 }
 
 export default Card;
