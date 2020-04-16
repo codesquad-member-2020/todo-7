@@ -22,7 +22,7 @@ public class CardController {
     @PostMapping
     public ResponseEntity<Card> createCard(@PathVariable int projectId, @PathVariable int categoryId, @RequestBody Card card) {
         Project project = projects.findById(projectId).orElseThrow(() -> new NotFoundException("Project " + projectId));
-        project.addCard(categoryId, card);
+        project.addNewCard(categoryId, card);
         project = projects.save(project);
         return ResponseEntity.status(HttpStatus.CREATED).body(project.getNewCard(categoryId));
     }

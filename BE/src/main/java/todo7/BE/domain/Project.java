@@ -20,21 +20,18 @@ public class Project {
 
     private List<Category> categories = new ArrayList<>();
 
-    public Project(String title) {
-        this.title = title;
-    }
-
 
     public Category findCategory(int categoryId) {
-        return categories.stream().filter(category -> category.checkId(categoryId)).findAny().orElseThrow(() -> new NotFoundException("Category " + categoryId));
+        return categories.stream().filter(category -> category.checkId(categoryId)).findAny()
+                .orElseThrow(() -> new NotFoundException("Category " + categoryId));
     }
 
-    public void addCard(int categoryId, Card card) {
-        this.findCategory(categoryId).add(card);
+    public void addNewCard(int categoryId, Card card) {
+        this.findCategory(categoryId).addCard(card);
     }
 
     public Card getNewCard(int categoryId) {
-        return this.findCategory(categoryId).getLastCard();
+        return this.findCategory(categoryId).getCard(0);
     }
 
     public void updateCard(int categoryId, int cardId, Card newCard) {

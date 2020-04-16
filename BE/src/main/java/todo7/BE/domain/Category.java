@@ -1,7 +1,6 @@
 package todo7.BE.domain;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import org.springframework.data.annotation.Id;
 import todo7.BE.web.exception.NotFoundException;
 
@@ -19,30 +18,28 @@ public class Category {
 
     private String title;
 
-    @JsonProperty("curPosition")
-    private int projectKey;
-
     private List<Card> cards = new ArrayList<>();
-
-    public Category(String title) {
-        this.title = title;
-    }
 
 
     public Card findCard(int cardId) {
-        return cards.stream().filter(category -> category.checkId(cardId)).findAny().orElseThrow(() -> new NotFoundException("Card " + cardId));
+        return cards.stream().filter(category -> category.checkId(cardId)).findAny()
+                .orElseThrow(() -> new NotFoundException("Card " + cardId));
     }
 
     public boolean checkId(int id) {
         return this.id == id;
     }
 
-    public void add(Card card) {
-        cards.add(card);
+    public void addCard(Card card) {
+        this.addCard(0, card);
     }
 
-    public Card getLastCard() {
-        return cards.get(cards.size() - 1);
+    public void addCard(int position, Card card) {
+        cards.add(position, card);
+    }
+
+    public Card getCard(int position) {
+        return cards.get(position);
     }
 
     public void updateCard(int cardId, Card newCard) {
