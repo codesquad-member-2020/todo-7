@@ -9,19 +9,45 @@
 import UIKit
 
 class ViewController: UIViewController {
-
-    var todoTableViewDataSource = ToDoTableViewDataSource()
-    var todoTableViewDelegate = ToDoTableViewDelegate()
     
+    // MARK: - Properties
+    private var containers: [UIViewController: ContainerTableViewDataSource] = [: ]
+    
+    // MARK: - Lifecyles
     override func viewDidLoad() {
         super.viewDidLoad()
+        configureContainers()
+        requestService()
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "toDo" {
-            guard let toDoViewController = segue.destination as? ContainerTableViewController else { return }
-            toDoViewController.tableView.dataSource = todoTableViewDataSource
-            toDoViewController.tableView.delegate = todoTableViewDelegate
+    // MARK: - Methods
+    private func requestService() {
+        Provider.request() { todoData in
+            guard let todoData = todoData else { return }
+            DispatchQueue.main.async {
+                self.updateData(categories: todoData)
+            }
+        }
+    }
+    
+    private func updateData(categories: Categoriable) {
+        for category in categories.categories {
+            guard let containerViewController =
+                children[category.position] as? ContainerTableViewController,
+                let dataSource = containers[children[category.position]] else { return }
+            containerViewController.updateData(title: category.title,
+                                               count: category.cards.count)
+            dataSource.updateCategory(category)
+            containerViewController.tableView.reloadData()
+        }
+    }
+    
+    private func configureContainers() {
+        for containerViewController in children {
+            guard let containerViewController = containerViewController as? ContainerTableViewController else { return }
+            let dataSource = ContainerTableViewDataSource()
+            containerViewController.tableView.dataSource = dataSource
+            containers.updateValue(dataSource, forKey: containerViewController)
         }
     }
 }
