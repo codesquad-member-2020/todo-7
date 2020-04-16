@@ -9,13 +9,13 @@ class Column {
     this.cardForm = new CardForm(this.columnId,this.columnName);
     this.columnHTML = `<div class="column">
     <div class="column-header">
-        <div class="list-total" id="list-total-${this.columnName}"></div>
+        <div class="list-total" id="list-total-${this.columnId}"></div>
         <div class="column-title">${this.columnName}</div>
-        <button class="btn-add" id="add-${this.columnName}" value="0"><i class="fas fa-plus"></i></button>
+        <button class="btn-add" id="add-${this.columnId}" value="0"><i class="fas fa-plus"></i></button>
         <button class="btn-close"><i class="fas fa-times"></i></button></div>
     <div class="column-content">
-        <div class="add-list-wrap" id="add-list-wrap-${this.columnName}"></div>
-        <ul class="list" id="list-${this.columnName}"></ul></div></div>`;
+        <div class="add-list-wrap" id="add-list-wrap-${this.columnId}"></div>
+        <ul class="list" id="list-${this.columnId}" data-columnid="${this.columnId}"></ul></div></div>`;
     this.init();
   }
 
@@ -31,7 +31,7 @@ class Column {
   }
 
   registerEventListener() {
-    const btnID = `add-${this.columnName}`;
+    const btnID = `add-${this.columnId}`;
     const btnAdd = document.getElementById(btnID);
 
     btnAdd.addEventListener("click", () => {
@@ -40,7 +40,7 @@ class Column {
   }
 
   renderCardTotal(){
-    const listTotal = document.getElementById(`list-total-${this.columnName}`);
+    const listTotal = document.getElementById(`list-total-${this.columnId}`);
     listTotal.innerHTML = this.columnData.cards.length;
   }
 
@@ -52,7 +52,7 @@ class Column {
   }
 
   columnPlusBtnClickHandler(btnAdd) {
-    const addListWrapID = `add-list-wrap-${this.columnName}`;
+    const addListWrapID = `add-list-wrap-${this.columnId}`;
     const addListWrap = document.getElementById(addListWrapID);
 
     if (btnAdd.value == 0) {

@@ -9,30 +9,30 @@ class Card {
     this.columnName = columnName;
     this.cardContent = cardContent;
     this.cardID = cardID;
-    this.cardHTML = `<li class="card">
-        <div class="list-icon" id="list-icon-${this.cardContent}"><i class="far fa-newspaper"></i></div>
+    this.cardHTML = `<li class="card" id="${this.cardID}" draggable="true" data-columnid="${this.columnId}">
+        <div class="list-icon" id="list-icon-${this.cardID}"><i class="far fa-newspaper"></i></div>
         <div class="card-content">
             <div class="content" id="card-${this.cardID}">${this.cardContent}</div>
             <div class="writer-message">Added by <span class="writer-id">hyewon3938</span></div>
         </div>
-        <button class="btn-list-delete" id="btn-list-delete-${this.cardContent}"><i class="fas fa-times"></i></button>
+        <button class="btn-list-delete" id="btn-list-delete-${this.cardID}"><i class="fas fa-times"></i></button>
     </li>`;
     this.makeCard();
     this.registerEventListener();
   }
   registerEventListener() {
-    const btnDelete = document.getElementById(`btn-list-delete-${this.cardContent}`);
+    const btnDelete = document.getElementById(`btn-list-delete-${this.cardID}`);
     btnDelete.addEventListener("click", () => {
       this.btnDeleteClickHandler();
     });
 
-    const btnEdit = document.getElementById(`list-icon-${this.cardContent}`);
+    const btnEdit = document.getElementById(`list-icon-${this.cardID}`);
     btnEdit.addEventListener('click',()=>{
      this.btnEditClickHandler();
     });
   }
   makeCard() {
-    const listULID = `list-${this.columnName}`;
+    const listULID = `list-${this.columnId}`;
     const listUL = document.getElementById(listULID);
     listUL.insertAdjacentHTML("afterbegin", this.cardHTML);
   }
@@ -49,18 +49,22 @@ class Card {
     };
     const requestURL = SERVICE_URL.REQUEST_URL+`/categories/${this.columnId}/cards/${this.cardID}`;
     fetchRequest(requestURL, "DELETE", requestBody)
-    .then((response) => response.json())
-    .then((data) => {
-      if(data.status == "404"){alert(data.status+' : '+data.error)}
-      else{
-      this.removeCard();
-      this.renderCardTotal();
-      util.closeLoadingIndicator('.loading',-1600);
-      }
-    });
+      .then((response) => {
+        if (response.status != 202) {
+          response.json();}
+      })
+      .then((data) => {
+        if (data != null && data.status == "404") {
+          alert(data.status + " : " + data.error);
+        }else{
+          this.removeCard();
+          this.renderCardTotal();
+          util.closeLoadingIndicator(".loading", -1600);
+        }
+      });
   }
   btnEditClickHandler(){
-    const btnEdit = document.getElementById(`list-icon-${this.cardContent}`);
+    const btnEdit = document.getElementById(`list-icon-${this.cardID}`);
     const target = btnEdit.closest('.card');
     const cardContent = target.querySelector(".content").innerText;
     const editTextarea = document.querySelector(".edit-note-textarea");
@@ -72,13 +76,13 @@ class Card {
     modal.openModal();
   }
   removeCard(){
-    const btnDelete = document.getElementById(`btn-list-delete-${this.cardContent}`);
+    const btnDelete = document.getElementById(`btn-list-delete-${this.cardID}`);
     const targetCard = btnDelete.closest(".card");
     targetCard.remove();
   }
   renderCardTotal() {
-    const listTotal = document.getElementById(`list-total-${this.columnName}`);
-    const listUL = document.getElementById(`list-${this.columnName}`);
+    const listTotal = document.getElementById(`list-total-${this.columnId}`);
+    const listUL = document.getElementById(`list-${this.columnId}`);
     listTotal.innerHTML = listUL.childElementCount;
   }
 }
