@@ -17,7 +17,7 @@ class ContainerTableSectionHeaderView: UITableViewHeaderFooterView {
     private var descriptionLabel: UILabel!
     private var addCellButton: UIButton!
     
-    override init(reuseIdentifier: String?) {
+    init(reuseIdentifier: String) {
         super.init(reuseIdentifier: reuseIdentifier)
         configure()
     }
@@ -27,9 +27,13 @@ class ContainerTableSectionHeaderView: UITableViewHeaderFooterView {
         configure()
     }
     
-    func updateCountingLabel(count: String, title: String) {
-        countingLabel.text = count
+    func updateCountingLabel(_ count: String, _ title: String) {
+        applyCountChange(count)
         descriptionLabel.text = title
+    }
+    
+    func applyCountChange(_ count: String) {
+        countingLabel.text = count
     }
     
     private func configure() {
