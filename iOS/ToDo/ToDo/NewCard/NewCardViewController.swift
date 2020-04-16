@@ -35,6 +35,4 @@ class NewCardViewController: UIViewController {
         view.endEditing(true)
     }
     // MARK: - Methods
-    
-
 }

@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AE880C4824404A4B00B053D4 /* ContainerTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE880C4724404A4B00B053D4 /* ContainerTableViewDataSource.swift */; };
+		AE880CB02445445100B053D4 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE880CAF2445445100B053D4 /* Model.swift */; };
+		AE880CB42445655D00B053D4 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE880CB32445655D00B053D4 /* Service.swift */; };
+		AE880CB62445685400B053D4 /* Provider.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE880CB52445685400B053D4 /* Provider.swift */; };
 		AE91F3F4243C518E00430DA2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE91F3F3243C518E00430DA2 /* AppDelegate.swift */; };
 		AE91F3F6243C518E00430DA2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE91F3F5243C518E00430DA2 /* SceneDelegate.swift */; };
 		AE91F3F8243C518E00430DA2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE91F3F7243C518E00430DA2 /* ViewController.swift */; };
@@ -18,12 +22,9 @@
 		AE91F418243C635A00430DA2 /* ContainerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE91F417243C635A00430DA2 /* ContainerTableViewCell.swift */; };
 		AE91F4D6243C971600430DA2 /* ContainerTableSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE91F4D5243C971600430DA2 /* ContainerTableSectionHeaderView.swift */; };
 		AE91F507243CA38200430DA2 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = AE91F506243CA38200430DA2 /* SnapKit */; };
-		AE91F50D243DB8EC00430DA2 /* DoneTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE91F50C243DB8EC00430DA2 /* DoneTableViewDataSource.swift */; };
-		AE91F50F243DB8F800430DA2 /* InProgressTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE91F50E243DB8F800430DA2 /* InProgressTableViewDataSource.swift */; };
-		AE91F511243DB90F00430DA2 /* ToDoTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE91F510243DB90F00430DA2 /* ToDoTableViewDataSource.swift */; };
-		AE91F513243DC6AD00430DA2 /* ToDoTableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE91F512243DC6AD00430DA2 /* ToDoTableViewDelegate.swift */; };
 		AE91F516243EC33700430DA2 /* NewCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE91F515243EC33700430DA2 /* NewCardViewController.swift */; };
 		AE91F547243EC65700430DA2 /* Name.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE91F546243EC65700430DA2 /* Name.swift */; };
+		AE91F549243ED27D00430DA2 /* NewCardTextViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE91F548243ED27D00430DA2 /* NewCardTextViewDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,6 +38,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		AE880C4724404A4B00B053D4 /* ContainerTableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerTableViewDataSource.swift; sourceTree = "<group>"; };
+		AE880CAF2445445100B053D4 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+		AE880CB32445655D00B053D4 /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
+		AE880CB52445685400B053D4 /* Provider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Provider.swift; sourceTree = "<group>"; };
 		AE91F3F0243C518E00430DA2 /* ToDo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ToDo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AE91F3F3243C518E00430DA2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AE91F3F5243C518E00430DA2 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -51,12 +56,9 @@
 		AE91F415243C592A00430DA2 /* ContainerTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerTableViewController.swift; sourceTree = "<group>"; };
 		AE91F417243C635A00430DA2 /* ContainerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerTableViewCell.swift; sourceTree = "<group>"; };
 		AE91F4D5243C971600430DA2 /* ContainerTableSectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerTableSectionHeaderView.swift; sourceTree = "<group>"; };
-		AE91F50C243DB8EC00430DA2 /* DoneTableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoneTableViewDataSource.swift; sourceTree = "<group>"; };
-		AE91F50E243DB8F800430DA2 /* InProgressTableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InProgressTableViewDataSource.swift; sourceTree = "<group>"; };
-		AE91F510243DB90F00430DA2 /* ToDoTableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoTableViewDataSource.swift; sourceTree = "<group>"; };
-		AE91F512243DC6AD00430DA2 /* ToDoTableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoTableViewDelegate.swift; sourceTree = "<group>"; };
 		AE91F515243EC33700430DA2 /* NewCardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewCardViewController.swift; sourceTree = "<group>"; };
 		AE91F546243EC65700430DA2 /* Name.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Name.swift; sourceTree = "<group>"; };
+		AE91F548243ED27D00430DA2 /* NewCardTextViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewCardTextViewDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,6 +80,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		AE880CB1244551AC00B053D4 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				AE880CB32445655D00B053D4 /* Service.swift */,
+				AE880CB52445685400B053D4 /* Provider.swift */,
+				AE880CB2244551E700B053D4 /* Model */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		AE880CB2244551E700B053D4 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				AE880CAF2445445100B053D4 /* Model.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		AE91F3E7243C518E00430DA2 = {
 			isa = PBXGroup;
 			children = (
@@ -99,12 +119,10 @@
 		AE91F3F2243C518E00430DA2 /* ToDo */ = {
 			isa = PBXGroup;
 			children = (
+				AE880CB1244551AC00B053D4 /* Network */,
 				AE91F545243EC64E00430DA2 /* Notification */,
 				AE91F514243EC30A00430DA2 /* NewCard */,
 				AE91F50B243DB88A00430DA2 /* ContainerViewController */,
-				AE91F50A243DB86300430DA2 /* Done */,
-				AE91F509243DB85A00430DA2 /* InProgress */,
-				AE91F508243DB84800430DA2 /* ToDo */,
 				AE91F3F3243C518E00430DA2 /* AppDelegate.swift */,
 				AE91F3F5243C518E00430DA2 /* SceneDelegate.swift */,
 				AE91F3F7243C518E00430DA2 /* ViewController.swift */,
@@ -125,36 +143,12 @@
 			path = ToDoTests;
 			sourceTree = "<group>";
 		};
-		AE91F508243DB84800430DA2 /* ToDo */ = {
-			isa = PBXGroup;
-			children = (
-				AE91F510243DB90F00430DA2 /* ToDoTableViewDataSource.swift */,
-				AE91F512243DC6AD00430DA2 /* ToDoTableViewDelegate.swift */,
-			);
-			path = ToDo;
-			sourceTree = "<group>";
-		};
-		AE91F509243DB85A00430DA2 /* InProgress */ = {
-			isa = PBXGroup;
-			children = (
-				AE91F50E243DB8F800430DA2 /* InProgressTableViewDataSource.swift */,
-			);
-			path = InProgress;
-			sourceTree = "<group>";
-		};
-		AE91F50A243DB86300430DA2 /* Done */ = {
-			isa = PBXGroup;
-			children = (
-				AE91F50C243DB8EC00430DA2 /* DoneTableViewDataSource.swift */,
-			);
-			path = Done;
-			sourceTree = "<group>";
-		};
 		AE91F50B243DB88A00430DA2 /* ContainerViewController */ = {
 			isa = PBXGroup;
 			children = (
 				AE91F415243C592A00430DA2 /* ContainerTableViewController.swift */,
 				AE91F4D5243C971600430DA2 /* ContainerTableSectionHeaderView.swift */,
+				AE880C4724404A4B00B053D4 /* ContainerTableViewDataSource.swift */,
 				AE91F417243C635A00430DA2 /* ContainerTableViewCell.swift */,
 			);
 			path = ContainerViewController;
@@ -164,6 +158,7 @@
 			isa = PBXGroup;
 			children = (
 				AE91F515243EC33700430DA2 /* NewCardViewController.swift */,
+				AE91F548243ED27D00430DA2 /* NewCardTextViewDelegate.swift */,
 			);
 			path = NewCard;
 			sourceTree = "<group>";
@@ -283,15 +278,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AE91F513243DC6AD00430DA2 /* ToDoTableViewDelegate.swift in Sources */,
+				AE91F549243ED27D00430DA2 /* NewCardTextViewDelegate.swift in Sources */,
 				AE91F418243C635A00430DA2 /* ContainerTableViewCell.swift in Sources */,
+				AE880CB42445655D00B053D4 /* Service.swift in Sources */,
 				AE91F4D6243C971600430DA2 /* ContainerTableSectionHeaderView.swift in Sources */,
+				AE880CB62445685400B053D4 /* Provider.swift in Sources */,
 				AE91F516243EC33700430DA2 /* NewCardViewController.swift in Sources */,
-				AE91F511243DB90F00430DA2 /* ToDoTableViewDataSource.swift in Sources */,
 				AE91F416243C592A00430DA2 /* ContainerTableViewController.swift in Sources */,
 				AE91F547243EC65700430DA2 /* Name.swift in Sources */,
-				AE91F50D243DB8EC00430DA2 /* DoneTableViewDataSource.swift in Sources */,
-				AE91F50F243DB8F800430DA2 /* InProgressTableViewDataSource.swift in Sources */,
+				AE880CB02445445100B053D4 /* Model.swift in Sources */,
+				AE880C4824404A4B00B053D4 /* ContainerTableViewDataSource.swift in Sources */,
 				AE91F3F8243C518E00430DA2 /* ViewController.swift in Sources */,
 				AE91F3F4243C518E00430DA2 /* AppDelegate.swift in Sources */,
 				AE91F3F6243C518E00430DA2 /* SceneDelegate.swift in Sources */,

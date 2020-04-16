@@ -30,7 +30,7 @@ class ViewController: UIViewController {
         }
     }
     
-    private func updateData(categories: Categoriable) {
+    private func updateData(categories: Projectable) {
         for category in categories.categories {
             guard let containerViewController =
                 children[category.position] as? ContainerTableViewController,
