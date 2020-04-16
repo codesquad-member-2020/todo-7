@@ -2,6 +2,7 @@ package todo7.BE.domain;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import org.springframework.data.annotation.Id;
+import todo7.BE.web.MoveCardCommand;
 import todo7.BE.web.exception.NotFoundException;
 
 import java.util.ArrayList;
@@ -66,5 +67,17 @@ public class Project {
         }
 
         throw new NotFoundException("Card " + cardId);
+    }
+
+    public void moveCard(MoveCardCommand moveCardCommand, int categoryId) {
+        Card card = this.removeCard(moveCardCommand.getCardId());
+        Category category = this.findCategory(categoryId)
+                .orElseThrow(() -> new NotFoundException("Category " + categoryId));
+
+        if (moveCardCommand.getPrevCardId().isPresent()) {
+            category.addCard(moveCardCommand.getPrevCardId().get(), card);
+        } else {
+            category.addCard(card);
+        }
     }
 }
