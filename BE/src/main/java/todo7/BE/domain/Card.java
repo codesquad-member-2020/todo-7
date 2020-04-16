@@ -1,6 +1,7 @@
 package todo7.BE.domain;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.springframework.data.annotation.Id;
 
 @JsonAutoDetect(
@@ -16,6 +17,12 @@ public class Card {
 
     private String contents;
 
+    @JsonProperty
+    private int categoryKey;
+
+    public int getCategoryKey() {
+        return categoryKey;
+    }
 
     public boolean checkId(int id) {
         return this.id == id;
