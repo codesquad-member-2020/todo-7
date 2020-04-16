@@ -8,11 +8,12 @@ import todo7.BE.web.AuthCheckInterceptor;
 
 @Configuration
 public class CommonWebConfig implements WebMvcConfigurer {
-    
+
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(authCheckInterceptor())
-                .addPathPatterns("/**");
+                .addPathPatterns("/**")
+                .excludePathPatterns("/auth/**");
     }
 
     @Bean
