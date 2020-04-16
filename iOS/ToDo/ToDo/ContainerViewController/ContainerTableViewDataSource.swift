@@ -15,31 +15,41 @@ protocol TableViewDeletable {
 class ContainerTableViewDataSource: NSObject, TableViewDeletable {
     
     // MARK: - Properties
-    var tempData: [(title: String,description: String)] =
-        [("4월3일", "DragAndDrop\nNSItem\nTableView\nTableViewCell"),
-         ("4월2일", "오토레이아웃자성하기\n유아이작성하기\n버튼 추가"),
-         ("할일","공부하기"),]
+    private var category: Categoriable?
     
     // MARK: - Methods
     func delete(_ tableView: UITableView, indexPath: IndexPath) {
-        tempData.remove(at: indexPath.row)
+        category?.cards.remove(at: indexPath.row)
         tableView.deleteRows(at: [indexPath], with: .fade)
+        let count = String(category?.cards.count ?? 0)
+        let userInfo: (String, String) = (tableView.description, count)
+        NotificationCenter.default
+            .post(name: Notification.Name.pushCellCount,
+                  object: nil,
+                  userInfo: ["count": userInfo])
+    }
+    
+    func updateCategory(_ category: Categoriable) {
+        self.category = category
     }
 }
 
 extension ContainerTableViewDataSource: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return tempData.count
+        return category?.cards.count ?? 0
     }
-
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: ContainerTableViewCell.identifier, for: indexPath) as? ContainerTableViewCell else { return UITableViewCell() }
-        let item = tempData[indexPath.item]
-        cell.update(title: item.title, description: item.description)
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: ContainerTableViewCell.identifier, for: indexPath) as? ContainerTableViewCell,
+            let item = category?.cards[indexPath.row] else { return UITableViewCell() }
+        cell.update(title: item.title, description: item.contents)
         return cell
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        guard let category = category else { return }
+        Provider.delete(categoryId: category.id,
+                        cardId: category.cards[indexPath.row].id)
         editingStyle == .delete ? delete(tableView, indexPath: indexPath) : nil
     }
 }
