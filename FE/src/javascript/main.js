@@ -23,7 +23,6 @@ window.addEventListener('DOMContentLoaded', () => {
         const columnToDo = new Column(data.categories[0]);
         menu.registerEventListener();
         modal.registerEventListener();
-        dragAndDrop(data.categories.length);
         util.closeLoadingIndicator('.loading',-1600);
       }
       })

@@ -70,7 +70,7 @@ class CardForm {
   addCard(data){
     const textarea = document.getElementById(`textarea-${this.columnName}`);
     const btnAdd = document.getElementById(`btn-list-add-${this.columnName}`);
-    new Card(this.columnId, this.columnName, data.title, data.id);
+    new Card(this.columnId, this.columnName, data.title, data.id,'afterbegin');
     textarea.value = "";
     util.changeClass(btnAdd, "btn-list-add");
     this.renderCardTotal();
