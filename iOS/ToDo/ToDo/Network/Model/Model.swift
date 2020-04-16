@@ -8,11 +8,11 @@
 
 import Foundation
 
-protocol Categoriable {
+protocol Projectable {
     var categories: [Category] { get }
 }
 
-protocol Cardable {
+protocol Categoriable {
     var id: Int { get }
     var cards: [Card] { get set }
 }
@@ -23,14 +23,14 @@ struct Card: Codable {
     let categoryKey: Int
 }
 
-struct Category: Cardable ,Codable {
+struct Category: Categoriable ,Codable {
     var id: Int
     let title: String
     var cards: [Card]
     let position: Int
 }
 
-struct TodoProject: Categoriable, Codable {
+struct TodoProject: Projectable, Codable {
     let id: Int
     let title: String
     let categories: [Category]
