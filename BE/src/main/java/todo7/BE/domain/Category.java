@@ -2,10 +2,10 @@ package todo7.BE.domain;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import org.springframework.data.annotation.Id;
-import todo7.BE.web.exception.NotFoundException;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @JsonAutoDetect(
         fieldVisibility = JsonAutoDetect.Visibility.ANY,
@@ -21,9 +21,8 @@ public class Category {
     private List<Card> cards = new ArrayList<>();
 
 
-    public Card findCard(int cardId) {
-        return cards.stream().filter(category -> category.checkId(cardId)).findAny()
-                .orElseThrow(() -> new NotFoundException("Card " + cardId));
+    public Optional<Card> findCard(int cardId) {
+        return cards.stream().filter(category -> category.checkId(cardId)).findAny();
     }
 
     public boolean checkId(int id) {
@@ -33,15 +32,12 @@ public class Category {
     public void addCard(Card card) {
         cards.add(0, card);
     }
+
     public Card getCard(int position) {
         return cards.get(position);
     }
 
-    public void updateCard(int cardId, Card newCard) {
-        this.findCard(cardId).merge(newCard);
-    }
-
-    public void removeCard(int cardId) {
-        cards.remove(findCard(cardId));
+    public void removeCard(Card card) {
+        cards.remove(card);
     }
 }

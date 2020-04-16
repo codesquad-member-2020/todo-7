@@ -6,6 +6,7 @@ import todo7.BE.web.exception.NotFoundException;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @JsonAutoDetect(
         fieldVisibility = JsonAutoDetect.Visibility.ANY,
@@ -21,24 +22,49 @@ public class Project {
     private List<Category> categories = new ArrayList<>();
 
 
-    public Category findCategory(int categoryId) {
-        return categories.stream().filter(category -> category.checkId(categoryId)).findAny()
-                .orElseThrow(() -> new NotFoundException("Category " + categoryId));
+    public Optional<Category> findCategory(int categoryId) {
+        return categories.stream().filter(category -> category.checkId(categoryId)).findAny();
     }
 
-    public void addNewCard(int categoryId, Card card) {
-        this.findCategory(categoryId).addCard(card);
+    public Optional<Card> findCard(int cardId) {
+        for (Category category : categories) {
+            Optional<Card> optionalCard = category.findCard(cardId);
+            if (optionalCard.isPresent()) {
+                return optionalCard;
+            }
+        }
+        return Optional.empty();
+    }
+
+    public void addNewCard(int categoryId, Card newCard) {
+        this.findCategory(categoryId)
+                .orElseThrow(() -> new NotFoundException("Category " + categoryId))
+                .addCard(newCard);
     }
 
     public Card getNewCard(int categoryId) {
-        return this.findCategory(categoryId).getCard(0);
+        return this.findCategory(categoryId)
+                .orElseThrow(() -> new NotFoundException("Category " + categoryId))
+                .getCard(0);
     }
 
-    public void updateCard(int categoryId, int cardId, Card newCard) {
-        this.findCategory(categoryId).updateCard(cardId, newCard);
+
+    public void updateCard(int cardId, Card newCard) {
+        this.findCard(cardId)
+                .orElseThrow(() -> new NotFoundException("Card " + cardId))
+                .merge(newCard);
     }
 
-    public void removeCard(int categoryId, int cardId) {
-        this.findCategory(categoryId).removeCard(cardId);
+    public Card removeCard(int cardId) {
+        for (Category category : categories) {
+            Optional<Card> optionalCard = category.findCard(cardId);
+            if (optionalCard.isPresent()) {
+                Card card = optionalCard.get();
+                category.removeCard(card);
+                return card;
+            }
+        }
+
+        throw new NotFoundException("Card " + cardId);
     }
 }
