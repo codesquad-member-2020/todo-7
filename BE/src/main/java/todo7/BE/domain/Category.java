@@ -31,13 +31,8 @@ public class Category {
     }
 
     public void addCard(Card card) {
-        this.addCard(0, card);
+        cards.add(0, card);
     }
-
-    public void addCard(int position, Card card) {
-        cards.add(position, card);
-    }
-
     public Card getCard(int position) {
         return cards.get(position);
     }

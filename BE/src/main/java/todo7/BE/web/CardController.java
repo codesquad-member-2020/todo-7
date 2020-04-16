@@ -36,10 +36,10 @@ public class CardController {
     }
 
     @DeleteMapping("/{cardId}")
-    public ResponseEntity<String> deleteCard(@PathVariable int projectId, @PathVariable int categoryId, @PathVariable int cardId) {
+    public ResponseEntity<Object> deleteCard(@PathVariable int projectId, @PathVariable int categoryId, @PathVariable int cardId) {
         Project project = projects.findById(projectId).orElseThrow(() -> new NotFoundException("Project " + projectId));
         project.removeCard(categoryId, cardId);
         projects.save(project);
-        return ResponseEntity.accepted().body("success");
+        return ResponseEntity.accepted().build();
     }
 }
