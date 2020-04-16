@@ -81,8 +81,8 @@ class CardForm {
     textarea.value.length > 0 ? util.changeClass(btnAdd, "btn-list-add-active") : util.changeClass(btnAdd, "btn-list-add");
   }
   renderCardTotal() {
-    const listTotal = document.getElementById(`list-total-${this.columnName}`);
-    const listUL = document.getElementById(`list-${this.columnName}`);
+    const listTotal = document.getElementById(`list-total-${this.columnId}`);
+    const listUL = document.getElementById(`list-${this.columnId}`);
     listTotal.innerHTML = listUL.childElementCount;
   }
 }
