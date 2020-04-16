@@ -80,8 +80,6 @@ const dragAndDrop= (categoriesLength)=>{
       "cardId" : parseInt(draggedItem.id),
       "preveCardId" : draggedItemIndex 
     };
-    console.log(draggedItemColumnId);
-    console.log(requestBody);
     // fetchRequest(requestURL, "PUT",requestBody)
     //   .then((response) => response.json())
     //   .then((data) => {
