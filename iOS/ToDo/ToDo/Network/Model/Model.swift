@@ -23,6 +23,11 @@ struct Card: Codable {
     let categoryKey: Int
 }
 
+struct Contents: Codable {
+    let title: String
+    let contents: String
+}
+
 struct Category: Categoriable ,Codable {
     var id: Int
     let title: String
