@@ -45,29 +45,28 @@ class Column {
 
     list.addEventListener('dragover',(e)=>{
       e.preventDefault();
-      list.parentNode.parentNode.className = 'column-hovered';
+      // list.parentNode.parentNode.className = 'column-hovered';
     });
 
     list.addEventListener('dragenter',(e)=>{
       e.preventDefault();
-      list.parentNode.parentNode.className = 'column-hovered';
-      dragAndDrop.draggedItem.className = 'card-hold';
-      if(dragAndDrop.draggedItem.dataset.columnid == list.dataset.columnid) dragAndDrop.draggedItemAfterimage.className = 'none';
-      if(dragAndDrop.draggedItem.dataset.columnid != list.dataset.columnid) dragAndDrop.draggedItemAfterimage.className = 'card-hold';
+      // util.changeClass(list.parentNode.parentNode,'column-hovered');
+      util.changeClass(dragAndDrop.draggedItem,'card-hold');
+      if(dragAndDrop.draggedItem.dataset.columnid == list.dataset.columnid) util.changeClass(dragAndDrop.draggedItemAfterimage,'none');
+      if(dragAndDrop.draggedItem.dataset.columnid != list.dataset.columnid) util.changeClass(dragAndDrop.draggedItemAfterimage,'card-hold');
       list.append(dragAndDrop.draggedItemAfterimage);
     });
     list.addEventListener('dragleave',(e)=>{
       e.preventDefault();
-      list.parentNode.parentNode.className = 'column';
+      // util.changeClass(list.parentNode.parentNode,'column');
     });
     list.addEventListener('drop',()=>{
-      list.parentNode.parentNode.className = 'column';
+      // util.changeClass(list.parentNode.parentNode,'column');
       dragAndDrop.draggedItemAfterimage.remove();
       if(dragAndDrop.draggedItem.dataset.columnid == list.dataset.columnid) return;
       list.append(dragAndDrop.draggedItem);  
       dragAndDrop.draggedItem.dataset.columnid = list.dataset.columnid;
       dragAndDrop.draggedItemIndex = util.getElementIndex(dragAndDrop.draggedItem);
-      
       const columns = document.querySelectorAll('.column');
       for(const column of columns){
         this.renderCardTotal(column.id);
@@ -104,12 +103,12 @@ class Column {
   }
 
   requestMovingCard(){
-    const requestURL = SERVICE_URL.REQUEST_URL+`/categories/${dragAndDrop.draggedItem.dataset.columnid}`;
+    const requestURL = SERVICE_URL.REQUEST_URL+`/categories/${dragAndDrop.draggedItem.dataset.columnid}/cards`;
     let preveCardId = null;
     if(dragAndDrop.draggedItem.previousSibling!=null) preveCardId = parseInt(dragAndDrop.draggedItem.previousSibling.id);
     const requestBody = {
       "cardId" : parseInt(dragAndDrop.draggedItem.id),
-      "preveCardId" : preveCardId 
+      "prevCardId" : preveCardId 
     };
     fetchRequest(requestURL, "PUT",requestBody)
       .then((response) => {
