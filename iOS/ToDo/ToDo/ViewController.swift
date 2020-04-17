@@ -38,6 +38,7 @@ class ViewController: UIViewController {
             containerViewController.updateData(title: category.title,
                                                count: category.cards.count)
             dataSource.updateCategory(category)
+            containerViewController.updateCategoryId(category.id)
             containerViewController.tableView.reloadData()
         }
     }

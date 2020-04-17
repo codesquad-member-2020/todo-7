@@ -25,6 +25,7 @@
 		AE91F516243EC33700430DA2 /* NewCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE91F515243EC33700430DA2 /* NewCardViewController.swift */; };
 		AE91F547243EC65700430DA2 /* Name.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE91F546243EC65700430DA2 /* Name.swift */; };
 		AE91F549243ED27D00430DA2 /* NewCardTextViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE91F548243ED27D00430DA2 /* NewCardTextViewDelegate.swift */; };
+		AEBF849B2448EA83007D46DD /* NewCardTitleTextViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEBF849A2448EA83007D46DD /* NewCardTitleTextViewDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +60,7 @@
 		AE91F515243EC33700430DA2 /* NewCardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewCardViewController.swift; sourceTree = "<group>"; };
 		AE91F546243EC65700430DA2 /* Name.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Name.swift; sourceTree = "<group>"; };
 		AE91F548243ED27D00430DA2 /* NewCardTextViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewCardTextViewDelegate.swift; sourceTree = "<group>"; };
+		AEBF849A2448EA83007D46DD /* NewCardTitleTextViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewCardTitleTextViewDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -159,6 +161,7 @@
 			children = (
 				AE91F515243EC33700430DA2 /* NewCardViewController.swift */,
 				AE91F548243ED27D00430DA2 /* NewCardTextViewDelegate.swift */,
+				AEBF849A2448EA83007D46DD /* NewCardTitleTextViewDelegate.swift */,
 			);
 			path = NewCard;
 			sourceTree = "<group>";
@@ -282,6 +285,7 @@
 				AE91F418243C635A00430DA2 /* ContainerTableViewCell.swift in Sources */,
 				AE880CB42445655D00B053D4 /* Service.swift in Sources */,
 				AE91F4D6243C971600430DA2 /* ContainerTableSectionHeaderView.swift in Sources */,
+				AEBF849B2448EA83007D46DD /* NewCardTitleTextViewDelegate.swift in Sources */,
 				AE880CB62445685400B053D4 /* Provider.swift in Sources */,
 				AE91F516243EC33700430DA2 /* NewCardViewController.swift in Sources */,
 				AE91F416243C592A00430DA2 /* ContainerTableViewController.swift in Sources */,
