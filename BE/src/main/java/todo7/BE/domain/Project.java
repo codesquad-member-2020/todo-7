@@ -49,7 +49,6 @@ public class Project {
                 .getCard(0);
     }
 
-
     public void updateCard(int cardId, Card newCard) {
         this.findCard(cardId)
                 .orElseThrow(() -> new NotFoundException("Card " + cardId))

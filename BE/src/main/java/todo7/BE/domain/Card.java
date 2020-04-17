@@ -1,6 +1,7 @@
 package todo7.BE.domain;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.springframework.data.annotation.Id;
 
 @JsonAutoDetect(

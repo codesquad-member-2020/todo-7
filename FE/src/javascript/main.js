@@ -6,6 +6,7 @@ import modal from './component/modal.js';
 import { fetchRequest } from "./util/fetchRequest.js";
 import {SERVICE_URL} from "./constants/serviceUrls.js"; 
 import util from "./util/util.js";
+import  dragAndDrop from "./dragAndDrop.js";
 
 
 window.addEventListener('DOMContentLoaded', () => {

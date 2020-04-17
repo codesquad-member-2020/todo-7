@@ -51,6 +51,7 @@ header {
     height: 100%;
     display : flex;
     box-sizing: border-box;
+
 }
 .column{
     border: solid 1px #D8D8D8;
@@ -58,6 +59,16 @@ header {
     height: 725px;
     margin: 15px;
     background: #EFF1F3;
+    border-radius: 10px;
+    text-align: center;
+    box-sizing: border-box;
+}
+.column-hovered{
+    border: solid 1px #D8D8D8;
+    width: 500px;
+    height: 725px;
+    margin: 15px;
+    background: rgba(0,0,0,0.1);
     border-radius: 10px;
     text-align: center;
     box-sizing: border-box;
@@ -187,6 +198,11 @@ textarea {
     height: 630px;
     overflow: scroll;
 }
+.list-hovered{
+    width: 460px;
+    height: 630px;
+    overflow: scroll;
+}
 .list-add {
     width: 460px;
     max-height: 470px;
@@ -199,7 +215,12 @@ textarea {
 .list-add::-webkit-scrollbar {
     display: none;
 }
-
+.list-hovered::-webkit-scrollbar {
+    display: none;
+}
+.list-add::-webkit-scrollbar {
+    display: none;
+}
 .card{
     min-height: 100px;
     margin : 20px 15px 15px 22px;
@@ -210,6 +231,22 @@ textarea {
     border-radius: 5px;
     padding: 10px 10px 5px 10px;
     box-shadow: 1.5px 1.5px 2px 1.5px #D8D8D8;
+}
+
+.card-hold{
+    min-height: 100px;
+    margin : 20px 15px 15px 22px;
+    box-sizing: border-box;
+    background: white;
+    display: flex;
+    justify-content: space-around;
+    border-radius: 5px;
+    padding: 10px 10px 5px 10px;
+    box-shadow: 1.5px 1.5px 5px 1.5px #819FF7;
+    opacity: 0.5;
+}
+.none{
+   display: none;
 }
 .list-icon{
     font-size: 20px;
@@ -267,6 +304,9 @@ textarea {
     box-sizing: border-box;
     border: solid 2px #E6E6E6;
     box-shadow: #BDBDBD -1px 0px 10px 0.5px;
+}
+.menu-wrap{
+
 }
 .menu-header{
     height: 40px;
