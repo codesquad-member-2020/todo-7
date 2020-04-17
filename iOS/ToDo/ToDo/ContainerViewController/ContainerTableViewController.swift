@@ -12,6 +12,7 @@ class ContainerTableViewController: UITableViewController {
     
     // MARK: - Properties
     private var sectionView: ContainerTableSectionHeaderView!
+    private var categoryId: Int = 0
     
     // MARK: - Lifecycles
     override func viewDidLoad() {
@@ -27,6 +28,11 @@ class ContainerTableViewController: UITableViewController {
                          selector: #selector(updateCount),
                          name: Notification.Name.pushCellCount,
                          object: nil)
+        NotificationCenter.default
+            .addObserver(self,
+                         selector: #selector(reloadTableView),
+                         name: Notification.Name.reloadTableView,
+                         object: nil)
     }
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -41,15 +47,29 @@ class ContainerTableViewController: UITableViewController {
         sectionView.updateCountingLabel(String(count), title)
     }
     
-    @objc func modalNewCard() {
-        let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "NewCardViewController")
-        present(viewController, animated: true, completion: nil)
+    func updateCategoryId(_ categoryId: Int) {
+        self.categoryId = categoryId
+    }
+    
+    @objc func modalNewCard(_ notification: Notification) {
+        guard let userInfo = notification.userInfo?["contentView"] as? UIView else { return }
+        if userInfo == sectionView.contentView {
+            guard let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "NewCardViewController") as? NewCardViewController else { return }
+            viewController.updateCategoryId(categoryId: categoryId)
+            present(viewController, animated: true, completion: nil)
+        }
     }
     
     @objc func updateCount(_ notification: Notification) {
         guard let userInfo = notification.userInfo?["count"] else { return }
-        let result = userInfo as! (identifier: String, count: String)
-        result.identifier == tableView.description ?
+        let result = userInfo as! (identifier: Int, count: String)
+        result.identifier == categoryId ?
             sectionView.applyCountChange(result.count) : nil
+    }
+    
+    @objc func reloadTableView() {
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
     }
 }
