@@ -20,6 +20,9 @@ public class Category {
 
     private String title;
 
+    @JsonProperty("position")
+    private int projectKey;
+
     private List<Card> cards = new ArrayList<>();
 
 
