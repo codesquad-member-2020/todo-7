@@ -17,6 +17,9 @@ public class Card {
 
     private String contents;
 
+    @JsonProperty("position")
+    private int categoryKey;
+
 
     public boolean checkId(int id) {
         return this.id == id;
