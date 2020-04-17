@@ -104,12 +104,12 @@ class Column {
   }
 
   requestMovingCard(){
-    const requestURL = SERVICE_URL.REQUEST_URL+`/categories/${dragAndDrop.draggedItem.dataset.columnid}`;
+    const requestURL = SERVICE_URL.REQUEST_URL+`/categories/${dragAndDrop.draggedItem.dataset.columnid}/cards`;
     let preveCardId = null;
     if(dragAndDrop.draggedItem.previousSibling!=null) preveCardId = parseInt(dragAndDrop.draggedItem.previousSibling.id);
     const requestBody = {
       "cardId" : parseInt(dragAndDrop.draggedItem.id),
-      "preveCardId" : preveCardId 
+      "prevCardId" : preveCardId 
     };
     fetchRequest(requestURL, "PUT",requestBody)
       .then((response) => {

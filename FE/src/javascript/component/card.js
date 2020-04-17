@@ -34,23 +34,23 @@ class Card {
     });
 
     const card = document.getElementById(this.cardID);
-    const cardAfterimage = card.cloneNode(true);
     
-
     card.addEventListener('dragstart',(e)=>{
       dragAndDrop.draggedItem = card;
+      const cardAfterimage = dragAndDrop.draggedItem.cloneNode(true);
+      console.log(cardAfterimage);
       dragAndDrop.draggedItemAfterimage = cardAfterimage;
-      dragAndDrop.draggedItemColumnId = this.columnId;
+      dragAndDrop.draggedItemColumnId = card.dataset.columid;
       setTimeout(()=>{
         card.className = 'card-hold';
-        cardAfterimage.className = 'card-hold';     
+        dragAndDrop.draggedItemAfterimage.className = 'card-hold';     
       },0);
     });
    
     card.addEventListener('dragend',()=>{ 
       setTimeout(()=>{
         card.className = 'card';
-        cardAfterimage.className = 'card-hold';
+        dragAndDrop.draggedItemAfterimage.className = 'card-hold';
       },0);
     });
 
