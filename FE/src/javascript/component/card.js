@@ -33,24 +33,28 @@ class Card {
      this.btnEditClickHandler();
     });
 
+<<<<<<< HEAD
     const card = document.getElementById(`card-${this.cardID}`);
     const cardAfterimage = card.cloneNode(true);
+=======
+    const card = document.getElementById(this.cardID);
+>>>>>>> 8e2d9984d65a39e2223b0849bb2d64fa956bdc92
     
-
     card.addEventListener('dragstart',(e)=>{
       dragAndDrop.draggedItem = card;
+      const cardAfterimage = dragAndDrop.draggedItem.cloneNode(true);
       dragAndDrop.draggedItemAfterimage = cardAfterimage;
-      dragAndDrop.draggedItemColumnId = this.columnId;
+      dragAndDrop.draggedItemColumnId = card.dataset.columid;
       setTimeout(()=>{
-        card.className = 'card-hold';
-        cardAfterimage.className = 'card-hold';     
+        util.changeClass(card,'card-hold');
+        util.changeClass(dragAndDrop.draggedItemAfterimage,'card-hold');  
       },0);
     });
    
     card.addEventListener('dragend',()=>{ 
       setTimeout(()=>{
-        card.className = 'card';
-        cardAfterimage.className = 'card-hold';
+        util.changeClass(card,'card');
+        util.changeClass(dragAndDrop.draggedItemAfterimage,'card-hold');  
       },0);
     });
 
