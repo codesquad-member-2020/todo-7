@@ -33,7 +33,6 @@ public class AuthorizationController {
         HttpHeaders headers = new HttpHeaders();
         headers.add(HttpHeaders.AUTHORIZATION, token);
         return ResponseEntity.accepted()
-                .headers(headers)
-                .body(token);
+                .headers(headers).build();
     }
 }
