@@ -17,20 +17,46 @@ class ContainerTableViewDataSource: NSObject, TableViewDeletable {
     // MARK: - Properties
     private var category: Categoriable?
     
+    override init() {
+        super.init()
+        NotificationCenter.default
+            .addObserver(self,
+                         selector: #selector(notifiedCategory),
+                         name: Notification.Name.updateCategroy,
+                         object: nil)
+    }
+    
     // MARK: - Methods
     func delete(_ tableView: UITableView, indexPath: IndexPath) {
         category?.cards.remove(at: indexPath.row)
         tableView.deleteRows(at: [indexPath], with: .fade)
+        pushCellCount()
+    }
+    
+    func updateCategory(_ category: Categoriable) {
+        self.category = category
+    }
+    
+    private func pushCellCount() {
         let count = String(category?.cards.count ?? 0)
-        let userInfo: (String, String) = (tableView.description, count)
+        let userInfo = (category?.id, count)
         NotificationCenter.default
             .post(name: Notification.Name.pushCellCount,
                   object: nil,
                   userInfo: ["count": userInfo])
     }
     
-    func updateCategory(_ category: Categoriable) {
-        self.category = category
+    @objc func notifiedCategory(_ notifiaction: Notification) {
+        Provider.request { todo in
+            guard let todo = todo else { return }
+            for category in todo.categories {
+                self.category?.id == category.id ? self.category = category : nil
+                self.pushCellCount()
+                NotificationCenter.default
+                    .post(name: Notification.Name.reloadTableView,
+                          object: nil)
+            }
+        }
     }
 }
 

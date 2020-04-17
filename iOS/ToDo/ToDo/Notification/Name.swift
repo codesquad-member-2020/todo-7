@@ -11,4 +11,6 @@ import Foundation
 extension Notification.Name {
     static var newCard: Notification.Name = Notification.Name(rawValue: "newCard")
     static var pushCellCount: Notification.Name = Notification.Name(rawValue: "pushCellCount")
+    static var updateCategroy: Notification.Name = Notification.Name("updateCategroy")
+    static var reloadTableView: Notification.Name = Notification.Name("reloadTableView")
 }

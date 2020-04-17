@@ -9,24 +9,21 @@
 import UIKit
 
 protocol Editable {
-    func applyPlaceHolder(_ textView: UITextView)
-    func placeHodler(_ textView: UITextView)
+    static var placeholder: String { get }
+    func applyPlaceHodler(_ textView: UITextView)
     func willEdit(_ textView: UITextView)
-    func limit(text: String, range: NSRange, max: Int) -> Bool
 }
 
 class NewCardTextViewDelegate: NSObject, Editable {
     
     // MARK: - Properties
     static var limit: Int = 500
-    
+    static var placeholder = "새로운 카드 만들기"
+
     // MARK: - Methods
-    func applyPlaceHolder(_ textView: UITextView) {
-        textView.text.isEmpty ? placeHodler(textView) : willEdit(textView)
-    }
     
-    func placeHodler(_ textView: UITextView) {
-        textView.text = "새로운 카드 만들기"
+    func applyPlaceHodler(_ textView: UITextView) {
+        textView.text = Self.placeholder
         textView.textColor = .systemGray
     }
     
@@ -48,10 +45,10 @@ extension NewCardTextViewDelegate: UITextViewDelegate {
     }
     
     func textViewDidBeginEditing(_ textView: UITextView) {
-        applyPlaceHolder(textView)
+        textView.text == Self.placeholder ? willEdit(textView) : nil
     }
     
     func textViewDidEndEditing(_ textView: UITextView) {
-        textView.text.isEmpty ? placeHodler(textView) : nil
+        textView.text.isEmpty ? applyPlaceHodler(textView) : nil 
     }
 }
