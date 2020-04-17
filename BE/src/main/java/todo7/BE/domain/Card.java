@@ -17,11 +17,12 @@ public class Card {
 
     private String contents;
 
-    @JsonProperty
+    @JsonProperty("curPosition")
     private int categoryKey;
 
-    public int getCategoryKey() {
-        return categoryKey;
+    public Card(String title, String contents) {
+        this.title = title;
+        this.contents = contents;
     }
 
     public boolean checkId(int id) {

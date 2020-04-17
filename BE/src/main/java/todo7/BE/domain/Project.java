@@ -2,12 +2,10 @@ package todo7.BE.domain;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import org.springframework.data.annotation.Id;
-import todo7.BE.web.MoveCardCommand;
 import todo7.BE.web.exception.NotFoundException;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @JsonAutoDetect(
         fieldVisibility = JsonAutoDetect.Visibility.ANY,
@@ -22,62 +20,28 @@ public class Project {
 
     private List<Category> categories = new ArrayList<>();
 
-
-    public Optional<Category> findCategory(int categoryId) {
-        return categories.stream().filter(category -> category.checkId(categoryId)).findAny();
+    public Project(String title) {
+        this.title = title;
     }
 
-    public Optional<Card> findCard(int cardId) {
-        for (Category category : categories) {
-            Optional<Card> optionalCard = category.findCard(cardId);
-            if (optionalCard.isPresent()) {
-                return optionalCard;
-            }
-        }
-        return Optional.empty();
+
+    public Category findCategory(int categoryId) {
+        return categories.stream().filter(category -> category.checkId(categoryId)).findAny().orElseThrow(() -> new NotFoundException("Category " + categoryId));
     }
 
-    public void addNewCard(int categoryId, Card newCard) {
-        this.findCategory(categoryId)
-                .orElseThrow(() -> new NotFoundException("Category " + categoryId))
-                .addCard(newCard);
+    public void addCard(int categoryId, Card card) {
+        this.findCategory(categoryId).add(card);
     }
 
     public Card getNewCard(int categoryId) {
-        return this.findCategory(categoryId)
-                .orElseThrow(() -> new NotFoundException("Category " + categoryId))
-                .getCard(0);
+        return this.findCategory(categoryId).getLastCard();
     }
 
-
-    public void updateCard(int cardId, Card newCard) {
-        this.findCard(cardId)
-                .orElseThrow(() -> new NotFoundException("Card " + cardId))
-                .merge(newCard);
+    public void updateCard(int categoryId, int cardId, Card newCard) {
+        this.findCategory(categoryId).updateCard(cardId, newCard);
     }
 
-    public Card removeCard(int cardId) {
-        for (Category category : categories) {
-            Optional<Card> optionalCard = category.findCard(cardId);
-            if (optionalCard.isPresent()) {
-                Card card = optionalCard.get();
-                category.removeCard(card);
-                return card;
-            }
-        }
-
-        throw new NotFoundException("Card " + cardId);
-    }
-
-    public void moveCard(MoveCardCommand moveCardCommand, int categoryId) {
-        Card card = this.removeCard(moveCardCommand.getCardId());
-        Category category = this.findCategory(categoryId)
-                .orElseThrow(() -> new NotFoundException("Category " + categoryId));
-
-        if (moveCardCommand.getPrevCardId().isPresent()) {
-            category.addCard(moveCardCommand.getPrevCardId().get(), card);
-        } else {
-            category.addCard(card);
-        }
+    public void removeCard(int categoryId, int cardId) {
+        this.findCategory(categoryId).removeCard(cardId);
     }
 }
