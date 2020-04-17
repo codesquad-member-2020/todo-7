@@ -25,7 +25,7 @@ class Column {
 
   render() {
     const columnWrap = document.querySelector(".column-wrap");
-    columnWrap.insertAdjacentHTML("afterbegin", this.columnHTML);
+    columnWrap.insertAdjacentHTML('beforeend', this.columnHTML);
   }
   init() {
     this.render();
@@ -104,16 +104,17 @@ class Column {
   }
 
   requestMovingCard(){
-    const requestURL = SERVICE_URL.REQUEST_URL+`/categories/${dragAndDrop.draggedItem.dataset.columnid}`;
+    const requestURL = SERVICE_URL.REQUEST_URL+`/categories/${dragAndDrop.draggedItem.dataset.columnid}/cards`;
     let preveCardId = null;
-    if(dragAndDrop.draggedItem.previousSibling!=null) preveCardId = parseInt(dragAndDrop.draggedItem.previousSibling.id);
+    if(dragAndDrop.draggedItem.previousSibling!=null) preveCardId = parseInt(dragAndDrop.draggedItem.previousSibling.dataset.cardid);
     const requestBody = {
-      "cardId" : parseInt(dragAndDrop.draggedItem.id),
-      "preveCardId" : preveCardId 
+      "cardId" : parseInt(dragAndDrop.draggedItem.dataset.cardid),
+      "prevCardId" : preveCardId 
     };
+   
     fetchRequest(requestURL, "PUT",requestBody)
       .then((response) => {
-        if(response.status != "202"){alert('실패! 새로고침 버튼을 눌러주세요.')};});
+      });
   }
 }
 

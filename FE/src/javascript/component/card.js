@@ -11,7 +11,7 @@ class Card {
     this.cardContent = cardContent;
     this.cardID = cardID;
     this.renderDirection = renderDirection;
-    this.cardHTML = `<li class="card" id="${this.cardID}" draggable="true" data-columnid="${this.columnId}">
+    this.cardHTML = `<li class="card" id="card-${this.cardID}" draggable="true" data-columnid="${this.columnId}" data-cardid=${this.cardID}>
         <div class="list-icon" id="list-icon-${this.cardID}"><i class="far fa-newspaper"></i></div>
         <div class="card-content">
             <div class="content" id="card-${this.cardID}">${this.cardContent}</div>
@@ -33,7 +33,7 @@ class Card {
      this.btnEditClickHandler();
     });
 
-    const card = document.getElementById(this.cardID);
+    const card = document.getElementById(`card-${this.cardID}`);
     const cardAfterimage = card.cloneNode(true);
     
 
