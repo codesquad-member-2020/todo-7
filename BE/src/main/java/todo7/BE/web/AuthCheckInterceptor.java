@@ -12,6 +12,11 @@ import javax.servlet.http.HttpServletResponse;
 public class AuthCheckInterceptor implements HandlerInterceptor {
     private final String HEADER_AUTH = "Authorization";
     private Logger logger = LoggerFactory.getLogger(AuthCheckInterceptor.class);
+    private JwtUtils jwtUtils;
+
+    public AuthCheckInterceptor(JwtUtils jwtUtils) {
+        this.jwtUtils = jwtUtils;
+    }
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
@@ -25,7 +30,7 @@ public class AuthCheckInterceptor implements HandlerInterceptor {
             return true;
         }
         String token = request.getHeader(HEADER_AUTH);
-        JwtUtils.checkJwt(token);
+        jwtUtils.checkJwt(token);
 
         return true;
     }

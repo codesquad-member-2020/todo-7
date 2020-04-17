@@ -14,13 +14,13 @@ import java.util.Map;
 
 public class JwtUtils {
 
-    private static Logger logger = LoggerFactory.getLogger(JwtUtils.class);
+    private Logger logger = LoggerFactory.getLogger(JwtUtils.class);
 
-    private static String secretKey;
+    private String secretKey;
 
-    private static SecretKey key = Keys.hmacShaKeyFor("Todo7SecretKeyForTheProjectAlgorithm".getBytes());
+    private SecretKey key = Keys.hmacShaKeyFor("Todo7SecretKeyForTheProjectAlgorithm".getBytes());
 
-    public static String createToken(User user) {
+    public String createToken(User user) {
 
         Map<String, Object> headers = new HashMap<>();
         headers.put("typ", "JWT");
@@ -38,7 +38,7 @@ public class JwtUtils {
         return jwt;
     }
 
-    public static void checkJwt(String jwt) {
+    public void checkJwt(String jwt) {
         if (jwt == null) {
             throw AuthorizationException.emptyToken();
         }

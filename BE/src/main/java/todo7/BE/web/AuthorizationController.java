@@ -20,15 +20,17 @@ public class AuthorizationController {
     private Logger logger = LoggerFactory.getLogger(AuthorizationController.class);
 
     private UserRepository users;
+    private JwtUtils jwtUtils;
 
-    public AuthorizationController(UserRepository users) {
+    public AuthorizationController(UserRepository users, JwtUtils jwtUtils) {
         this.users = users;
+        this.jwtUtils = jwtUtils;
     }
 
     @GetMapping("/{userId}")
     public ResponseEntity<String> create(@PathVariable int userId) {
         User user = users.findById(userId).orElseThrow(() -> new NotFoundException("User " + userId));
-        String token = JwtUtils.createToken(user);
+        String token = jwtUtils.createToken(user);
         logger.info("{}", token);
         HttpHeaders headers = new HttpHeaders();
         headers.add(HttpHeaders.AUTHORIZATION, token);
