@@ -11,7 +11,8 @@ import Foundation
 struct Provider {
     
     private static let provider = URLSession(configuration: .default)
-    private static let decoder: TodoDecoder = TodoDecoder<TodoProject>()
+    private static let decoder: TodoCodable = TodoCodable<TodoProject>()
+    private static let encoder: TodoCodable = TodoCodable<Contents>()
     
     static func request(completion: @escaping (TodoProject?) -> Void) {
         DispatchQueue.main.async {
@@ -26,17 +27,33 @@ struct Provider {
         provider.dataTask(with: Service.deleteURLRequset(categoryId, cardId))
             .resume()
     }
+    
+    static func post(categoryId: Int, contents: Contents) {
+        provider.dataTask(with: Service.addURLRequest(categoryId,
+                                                      data: encoder.encode(data: contents)!))
+            .resume()
+    }
 }
 
-struct TodoDecoder<T: Decodable> {
+struct TodoCodable<T: Codable> {
     
-    let decoder: JSONDecoder = JSONDecoder()
+    private let decoder: JSONDecoder = JSONDecoder()
+    private let encoder: JSONEncoder = JSONEncoder()
     
     func decode(_ type: T.Type ,data: Data) -> T? {
         do {
             return try decoder.decode(type, from: data)
         } catch {
             print("Decode fail")
+            return nil
+        }
+    }
+    
+    func encode(data: T) -> Data? {
+        do {
+            return try encoder.encode(data)
+        } catch {
+            print("Encode fail")
             return nil
         }
     }
