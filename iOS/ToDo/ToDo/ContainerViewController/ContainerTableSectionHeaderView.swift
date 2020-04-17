@@ -33,7 +33,9 @@ class ContainerTableSectionHeaderView: UITableViewHeaderFooterView {
     }
     
     func applyCountChange(_ count: String) {
-        countingLabel.text = count
+        DispatchQueue.main.async {
+            self.countingLabel.text = count
+        }
     }
     
     private func configure() {
@@ -93,7 +95,8 @@ class ContainerTableSectionHeaderView: UITableViewHeaderFooterView {
     @objc func addCellAction() {
         NotificationCenter.default
             .post(name: Notification.Name.newCard,
-                  object: nil)
+                  object: nil,
+                  userInfo: ["contentView": contentView])
     }
 }
 
