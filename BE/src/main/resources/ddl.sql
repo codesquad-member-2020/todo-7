@@ -1,4 +1,4 @@
-DROP TABLE IF EXISTS card, category, project;
+DROP TABLE IF EXISTS card, category, project, user;
 
 CREATE TABLE project (
     id int auto_increment primary key,
@@ -20,4 +20,10 @@ CREATE TABLE card(
     category int,
     category_key int,
     FOREIGN KEY (category) REFERENCES category(Id) ON UPDATE CASCADE
+);
+
+CREATE TABLE user(
+    id int auto_increment primary key,
+    user_name varchar(64),
+    password varchar(64)
 );
