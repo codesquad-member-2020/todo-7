@@ -107,11 +107,7 @@ class Column {
     let preveCardId = null;
     if(dragAndDrop.draggedItem.previousSibling!=null) preveCardId = parseInt(dragAndDrop.draggedItem.previousSibling.dataset.cardid);
     const requestBody = {
-<<<<<<< HEAD
       "cardId" : parseInt(dragAndDrop.draggedItem.dataset.cardid),
-=======
-      "cardId" : parseInt(dragAndDrop.draggedItem.id),
->>>>>>> 8e2d9984d65a39e2223b0849bb2d64fa956bdc92
       "prevCardId" : preveCardId 
     };
    

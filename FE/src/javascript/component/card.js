@@ -33,12 +33,8 @@ class Card {
      this.btnEditClickHandler();
     });
 
-<<<<<<< HEAD
     const card = document.getElementById(`card-${this.cardID}`);
     const cardAfterimage = card.cloneNode(true);
-=======
-    const card = document.getElementById(this.cardID);
->>>>>>> 8e2d9984d65a39e2223b0849bb2d64fa956bdc92
     
     card.addEventListener('dragstart',(e)=>{
       dragAndDrop.draggedItem = card;
