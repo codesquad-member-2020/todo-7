@@ -38,19 +38,18 @@ class Card {
     card.addEventListener('dragstart',(e)=>{
       dragAndDrop.draggedItem = card;
       const cardAfterimage = dragAndDrop.draggedItem.cloneNode(true);
-      console.log(cardAfterimage);
       dragAndDrop.draggedItemAfterimage = cardAfterimage;
       dragAndDrop.draggedItemColumnId = card.dataset.columid;
       setTimeout(()=>{
-        card.className = 'card-hold';
-        dragAndDrop.draggedItemAfterimage.className = 'card-hold';     
+        util.changeClass(card,'card-hold');
+        util.changeClass(dragAndDrop.draggedItemAfterimage,'card-hold');  
       },0);
     });
    
     card.addEventListener('dragend',()=>{ 
       setTimeout(()=>{
-        card.className = 'card';
-        dragAndDrop.draggedItemAfterimage.className = 'card-hold';
+        util.changeClass(card,'card');
+        util.changeClass(dragAndDrop.draggedItemAfterimage,'card-hold');  
       },0);
     });
 
