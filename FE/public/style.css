@@ -9,6 +9,7 @@ button {
     width: 1500px;
     height: 800px;
     margin : 30px auto;
+    overflow: hidden;
 }
 header {
     width: 100%;
@@ -45,43 +46,32 @@ header {
 .btn-menu:hover{
     color: grey;
 }
-.wrap {
+.column-wrap {
     width: 100%;
     height: 100%;
     display : flex;
     box-sizing: border-box;
-}
-.column-todo{
-    border: solid 1px #D8D8D8;
-    width: 500px;
-    height: 725px;
-    margin: 15px;
-    background: #EFF1F3;
-    border-radius: 10px;
-    text-align: center;
-    box-sizing: border-box;
-}
-.column-inProgress{
-    border: solid 1px #D8D8D8;
-    width: 500px;
-    height: 725px;
-    margin: 15px;
-    box-sizing: border-box;
-    background: #EFF1F3;
-    border-radius: 10px;
-    text-align: center;
 
 }
-.column-done{
+.column{
     border: solid 1px #D8D8D8;
     width: 500px;
     height: 725px;
     margin: 15px;
-    box-sizing: border-box;
     background: #EFF1F3;
     border-radius: 10px;
     text-align: center;
-
+    box-sizing: border-box;
+}
+.column-hovered{
+    border: solid 1px #D8D8D8;
+    width: 500px;
+    height: 725px;
+    margin: 15px;
+    background: rgba(0,0,0,0.1);
+    border-radius: 10px;
+    text-align: center;
+    box-sizing: border-box;
 }
 .column-header{
     width:467px;
@@ -160,18 +150,33 @@ textarea {
 .btn-list-add {
     width: 200px;
     height: 45px;
-    background: #04B45F;
-    border: solid 1px #A4A4A4;
-    color: whitesmoke;
+    color: hsla(0,0%,100%,.75);
+    background-color: #94d3a2;
+    background-image: none;
+    border-color: rgba(27,31,35,.2);
+    box-shadow: none;
     font-size: 18px;
     font-weight: bold;
     border-radius: 5px;
     outline: 0;
 }
-.btn-list-add:hover{
+.btn-list-add-active {
+    width: 200px;
+    height: 45px;
+    color: whitesmoke;
+    background-color: #269f42;
+    background-image: linear-gradient(-180deg,#2fcb53,#269f42 90%);
+    border-color: rgba(27,31,35,.2);
+    box-shadow: none;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 5px;
+    outline: 0;
+}
+
+.btn-list-add-active:hover{
     outline : 0;
-    border: solid 1px #6E6E6E;
-    background: #088A4B;
+    border: solid 1px #585858;
 }
 .btn-list-cancel {
     width: 200px;
@@ -193,6 +198,11 @@ textarea {
     height: 630px;
     overflow: scroll;
 }
+.list-hovered{
+    width: 460px;
+    height: 630px;
+    overflow: scroll;
+}
 .list-add {
     width: 460px;
     max-height: 470px;
@@ -205,7 +215,12 @@ textarea {
 .list-add::-webkit-scrollbar {
     display: none;
 }
-
+.list-hovered::-webkit-scrollbar {
+    display: none;
+}
+.list-add::-webkit-scrollbar {
+    display: none;
+}
 .card{
     min-height: 100px;
     margin : 20px 15px 15px 22px;
@@ -217,11 +232,30 @@ textarea {
     padding: 10px 10px 5px 10px;
     box-shadow: 1.5px 1.5px 2px 1.5px #D8D8D8;
 }
+
+.card-hold{
+    min-height: 100px;
+    margin : 20px 15px 15px 22px;
+    box-sizing: border-box;
+    background: white;
+    display: flex;
+    justify-content: space-around;
+    border-radius: 5px;
+    padding: 10px 10px 5px 10px;
+    box-shadow: 1.5px 1.5px 5px 1.5px #819FF7;
+    opacity: 0.5;
+}
+.none{
+   display: none;
+}
 .list-icon{
     font-size: 20px;
     color: dimgrey;
     padding-top: 5px;
     padding-left: 5px;
+}
+.list-icon:hover{
+    color : #5882FA;
 }
 .card-content{
     width: 400px;
@@ -265,11 +299,14 @@ textarea {
     width: 400px;
     height: 100%;
     top: 0px;
-    right: 0px;
+    right: -450px;
     background:white;
     box-sizing: border-box;
     border: solid 2px #E6E6E6;
     box-shadow: #BDBDBD -1px 0px 10px 0.5px;
+}
+.menu-wrap{
+
 }
 .menu-header{
     height: 40px;
@@ -352,10 +389,13 @@ textarea {
     color: #848484;
     font-weight: bold;
 }
+.edit-note{
+    display: none;
+}
 .edit-note-background{
     position: absolute;
     top: 0px;
-    left: 0px;
+    left: -1600px;
     width: inherit;
     height: inherit;
     background-color: rgba(0,0,0,0.5);
@@ -428,6 +468,20 @@ textarea {
 .edit-note-save-btn:hover{
     border: solid 1px #6E6E6E;
     background: #088A4B;
+}
+.loading{
+    position: absolute;
+    top: 0px;
+    left: -1600px;
+    width: inherit;
+    height: inherit;
+    background-color: rgba(0,0,0,0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.loading-img{
+    width: 200px;
 }
 /* 여백 초기화 */
 body,div,ul,li,dl,dd,dt,ol,h1,h2,h3,h4,h5,h6,input,fieldset,legend,p,select,table,th,td,tr,textarea,button,form,figure,figcaption{margin:0; padding:0;}
